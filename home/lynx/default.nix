@@ -12,6 +12,63 @@
     recursive = true;
     executable = true;
   };
+  home.file.".config/scripts" = {
+    source = ../files/.config/scripts;
+    recursive = true;
+    executable = true;
+  };
+
+  home.file.".config/bat" = {
+    source = ../files/.config/bat;
+    recursive = true;
+  };
+  home.file.".config/easyeffects" = {
+    source = ../files/.config/easyeffects;
+    recursive = true;
+  };
+  home.file.".config/fish" = {
+    source = ../files/.config/fish;
+    recursive = true;
+  };
+  home.file.".config/helix" = {
+    source = ../files/.config/helix;
+    recursive = true;
+  };
+  home.file.".config/kitty" = {
+    source = ../files/.config/kitty;
+    recursive = true;
+  };
+  home.file.".config/mako" = {
+    source = ../files/.config/mako;
+    recursive = true;
+  };
+  home.file.".config/npm" = {
+    source = ../files/.config/npm;
+    recursive = true;
+  };
+  home.file.".config/starship.toml" = {
+    source = ../files/.config/starship.toml;
+  };
+  home.file.".config/waybar" = {
+    source = ../files/.config/waybar;
+    recursive = true;
+  };
+  home.file.".config/waypaper" = {
+    source = ../files/.config/waypaper;
+    recursive = true;
+  };
+  home.file.".config/wlogout" = {
+    source = ../files/.config/wlogout;
+    recursive = true;
+  };
+  home.file.".config/wofi" = {
+    source = ../files/.config/wofi;
+    recursive = true;
+  };
+  home.file.".config/zellij" = {
+    source = ../files/.config/zellij;
+    recursive = true;
+  };
 
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
