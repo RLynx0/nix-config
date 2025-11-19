@@ -17,15 +17,16 @@
   outputs = { nixpkgs, ... }@inputs:
     let
 
-      system = "x86-64-linux";
+      system = "x86_64-linux";
       custom_lib = import ./lib { inherit (nixpkgs) lib; };
       lib = nixpkgs.lib.extend (self: super: { custom = custom_lib; });
+      pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
 
     in {
 
       nixosConfigurations = let
 
-        specialArgs = { inherit system inputs lib; };
+        specialArgs = { inherit system inputs lib pkgs-unstable; };
         nixos_hosts = builtins.attrNames (builtins.readDir ./hosts/nixos);
 
       in builtins.listToAttrs (map (host: {

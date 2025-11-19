@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, pkgs-unstable, inputs, ... }:
 
 {
   imports = [
@@ -145,14 +145,14 @@
   };
 
   # -- Packages --
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages =
+  (with pkgs; [
     ardour
     calf
     cava
     gavin-bc
     gh
     git
-    helix
     home-manager
     htop
     hypridle
@@ -178,5 +178,9 @@
     xfce.thunar-volman
     zellij
     zoxide
+  ])
+  ++
+  (with pkgs-unstable; [
+    helix
   ]);
 }
