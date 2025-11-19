@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Instagram
+Comment=Open Instagram in Browser
+Exec=sh -c '$HOME/.config/scripts/librewolf-workspace.sh https://www.instagram.com/'
+Icon=instagram_icon
+Terminal=false
+Type=Application
+Categories=Network;InstantMessaging;

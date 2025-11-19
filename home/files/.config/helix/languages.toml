@@ -1,0 +1,42 @@
+[language-server.rust-analyzer.config]
+cargo = { allFeatures = true }
+procMacro = { ignored = { leptos_macro = [
+    "server"
+] } }
+
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+
+[[language]]
+name = "rust"
+
+[language.debugger]
+command = "lldb-vscode"
+name = "lldb-vscode"
+port-arg = "--port {}"
+transport = "tcp"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+
+[[language.debugger.templates.completion]]
+completion = "filename"
+name = "binary"
+
+[language.debugger.templates.args]
+program = "{0}"
+runInTerminal = true
+
+
+[[language]]
+name = "css"
+auto-format = false
+
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-lsp"]
+auto-format = false
