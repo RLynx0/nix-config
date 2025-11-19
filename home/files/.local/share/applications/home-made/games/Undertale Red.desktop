@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Undertale Red
-Comment=Launch with Wine
-Exec=sh -c 'wine "$HOME/.local/bin/exe/UNDERTALE - RED/Undertale - Red.exe"'
-Icon=undertale_red_icon
-Terminal=false
-Type=Application
-Categories=Game;
