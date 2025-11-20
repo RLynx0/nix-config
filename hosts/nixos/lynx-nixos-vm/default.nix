@@ -74,6 +74,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.lynx = import ../../../home/lynx;
+    extraSpecialArgs = { inherit inputs pkgs-unstable; };
   };
 
   # Allow unfree packages
