@@ -170,6 +170,95 @@
     };
   };
 
+  # WLogout configuration
+  programs.wlogout = {
+    enable = true;
+    layout = [
+      {
+        label = "lock";
+        action = "hyprlock";
+        text = "Lock";
+        keybind = "l";
+      }
+      {
+        label = "hibernate";
+        action = "systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
+      }
+      {
+        label = "logout";
+        action = "loginctl terminate-user $USER";
+        text = "Logout";
+        keybind = "e";
+      }
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Shutdown";
+        keybind = "s";
+      }
+      {
+        label = "suspend";
+        action = "systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
+      }
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
+      }
+    ];
+    style = ''
+      * {
+        background-image: none;
+        box-shadow: none;
+      }
+
+      window {
+        background-color: rgba(34, 36, 38, 0.9);
+      }
+
+      button {
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration-color: #fff;
+        color: #ccc;
+        background-color: #111213;
+        border-color: #111213;
+        border-width: 4px;
+        margin: 0.3rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 25%;
+      }
+
+      button:focus,
+      button:active,
+      button:hover {
+        background-color: #1a1b1c;
+        color: #48E4F3;
+        border-color: #48E4F3;
+
+        animation-name: pulse;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-delay: 0.3s;
+        animation-duration: 1.2s;
+      }
+
+      @keyframes pulse {
+        to {
+          color: #EF4AE6;
+          border-color: #EF4AE6;
+        }
+      }
+    '';
+  };
+
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
