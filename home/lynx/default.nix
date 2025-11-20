@@ -105,13 +105,13 @@
 
   # WLogout configuration
   programs.wlogout = let
-    css = pkgs.replaceVars ../files/assets/wlogout/style.css {
-      lock = ../files/assets/wlogout/lock.png;
-      logout = ../files/assets/wlogout/logout.png;
-      suspend = ../files/assets/wlogout/suspend.png;
-      hibernate = ../files/assets/wlogout/hibernate.png;
-      shutdown = ../files/assets/wlogout/shutdown.png;
-      reboot = ../files/assets/wlogout/reboot.png;
+    css = pkgs.replaceVars ../files/wlogout/style.css {
+      lock = ../files/wlogout/lock.png;
+      logout = ../files/wlogout/logout.png;
+      suspend = ../files/wlogout/suspend.png;
+      hibernate = ../files/wlogout/hibernate.png;
+      shutdown = ../files/wlogout/shutdown.png;
+      reboot = ../files/wlogout/reboot.png;
     };
   in {
     enable = true;
