@@ -72,7 +72,9 @@
   # '';
 
   # Packages that should be installed to the user profile.
-  home.packages = [ ];
+  home.packages = with pkgs; [
+    xdg-ninja
+  ];
 
   # basic configuration of git
   programs.git = {
