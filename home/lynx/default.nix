@@ -172,7 +172,7 @@
 
   # WLogout configuration
   programs.wlogout = let
-    img = {
+    css = pkgs.replaceVars ../files/assets/wlogout/style.css {
       lock = ../files/assets/wlogout/lock.png;
       logout = ../files/assets/wlogout/logout.png;
       suspend = ../files/assets/wlogout/suspend.png;
@@ -182,6 +182,7 @@
     };
   in {
     enable = true;
+    style = css;
     layout = [
       {
         label = "lock";
@@ -220,59 +221,6 @@
         keybind = "r";
       }
     ];
-    style = ''
-      * {
-        background-image: none;
-        box-shadow: none;
-      }
-
-      window {
-        background-color: rgba(34, 36, 38, 0.9);
-      }
-
-      button {
-        font-size: 1.2rem;
-        font-weight: bold;
-        border-radius: 10px;
-        text-decoration-color: #fff;
-        color: #ccc;
-        background-color: #111213;
-        border-color: #111213;
-        border-width: 4px;
-        margin: 0.3rem;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 25%;
-      }
-
-      button:focus,
-      button:active,
-      button:hover {
-        background-color: #1a1b1c;
-        color: #48E4F3;
-        border-color: #48E4F3;
-
-        animation-name: pulse;
-        animation-direction: alternate;
-        animation-iteration-count: infinite;
-        animation-delay: 0.3s;
-        animation-duration: 1.2s;
-      }
-
-      @keyframes pulse {
-        to {
-          color: #EF4AE6;
-          border-color: #EF4AE6;
-        }
-      }
-
-      #lock { background-image: image(url("${img.lock}"), url("${img.lock}")); }
-      #logout { background-image: image(url("${img.logout}"), url("${img.logout}")); }
-      #suspend { background-image: image(url("${img.suspend}"), url("${img.suspend}")); }
-      #hibernate { background-image: image(url("${img.hibernate}"), url("${img.hibernate}")); }
-      #shutdown { background-image: image(url("${img.shutdown}"), url("${img.shutdown}")); }
-      #reboot { background-image: image(url("${img.reboot}"), url("${img.reboot}")); }
-    '';
   };
 
   # This value determines the home Manager release that your
