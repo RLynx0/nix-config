@@ -57,10 +57,6 @@
     source = ../files/.config/waypaper;
     recursive = true;
   };
-  home.file.".config/wlogout" = {
-    source = ../files/.config/wlogout;
-    recursive = true;
-  };
   home.file.".config/wofi" = {
     source = ../files/.config/wofi;
     recursive = true;
