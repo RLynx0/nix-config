@@ -171,7 +171,16 @@
   };
 
   # WLogout configuration
-  programs.wlogout = {
+  programs.wlogout = let
+    img = {
+      lock = ../files/assets/wlogout/lock.png;
+      logout = ../files/assets/wlogout/logout.png;
+      suspend = ../files/assets/wlogout/suspend.png;
+      hibernate = ../files/assets/wlogout/hibernate.png;
+      shutdown = ../files/assets/wlogout/shutdown.png;
+      reboot = ../files/assets/wlogout/reboot.png;
+    };
+  in {
     enable = true;
     layout = [
       {
@@ -256,6 +265,13 @@
           border-color: #EF4AE6;
         }
       }
+
+      #lock { background-image: image(url("${img.lock}"), url("${img.lock}")); }
+      #logout { background-image: image(url("${img.logout}"), url("${img.logout}")); }
+      #suspend { background-image: image(url("${img.suspend}"), url("${img.suspend}")); }
+      #hibernate { background-image: image(url("${img.hibernate}"), url("${img.hibernate}")); }
+      #shutdown { background-image: image(url("${img.shutdown}"), url("${img.shutdown}")); }
+      #reboot { background-image: image(url("${img.reboot}"), url("${img.reboot}")); }
     '';
   };
 
