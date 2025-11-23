@@ -23,8 +23,7 @@
   time.timeZone = "Europe/Vienna";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n.defaultLocale = "en_CA.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_AT.UTF-8";
     LC_IDENTIFICATION = "de_AT.UTF-8";
@@ -36,6 +35,11 @@
     LC_TELEPHONE = "de_AT.UTF-8";
     LC_TIME = "de_AT.UTF-8";
   };
+  # i18n.inputMethod.enable = true;
+  # i18n.inputMethod.fcitx5 = {
+  #   # configure japanese input method here somehow
+  #   waylandFrontend = true;
+  # };
 
   # Enable Display Manager with Hyprland
   services.xserver.enable = true;
