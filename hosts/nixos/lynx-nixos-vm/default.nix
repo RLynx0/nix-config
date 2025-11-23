@@ -170,6 +170,7 @@
       ardour
       calf
       cava
+      fastfetch
       gavin-bc
       gh
       git
@@ -182,7 +183,6 @@
       lf
       libnotify
       mako
-      neofetch
       nil
       nixd
       nixfmt-rfc-style
