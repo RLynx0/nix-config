@@ -35,11 +35,17 @@
     LC_TELEPHONE = "de_AT.UTF-8";
     LC_TIME = "de_AT.UTF-8";
   };
-  # i18n.inputMethod.enable = true;
-  # i18n.inputMethod.fcitx5 = {
-  #   # configure japanese input method here somehow
-  #   waylandFrontend = true;
-  # };
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-anthy
+      ];
+    };
+  };
 
   # Enable Display Manager with Hyprland
   services.xserver.enable = true;
@@ -150,8 +156,7 @@
   };
 
   # -- Packages --
-  environment.systemPackages =
-  (with pkgs; [
+  environment.systemPackages = (with pkgs; [
     ardour
     calf
     cava
@@ -182,9 +187,5 @@
     xfce.thunar-volman
     zellij
     zoxide
-  ])
-  ++
-  (with pkgs-unstable; [
-    helix
-  ]);
+  ]) ++ (with pkgs-unstable; [ helix ]);
 }
