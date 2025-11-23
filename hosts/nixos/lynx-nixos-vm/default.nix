@@ -173,7 +173,7 @@
     neofetch
     nil
     nixd
-    nixfmt-classic
+    nixfmt-rfc-style
     rustup
     starship
     stow
