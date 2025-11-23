@@ -45,6 +45,10 @@
   services.fail2ban.enable = true;
   security.apparmor.enable = true;
   security.rtkit.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
