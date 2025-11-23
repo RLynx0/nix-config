@@ -41,6 +41,11 @@
   services.xserver.displayManager.gdm.enable = true;
   services.displayManager.defaultSession = "hyprland";
 
+  # Security Related
+  services.fail2ban.enable = true;
+  security.apparmor.enable = true;
+  security.rtkit.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "at";
@@ -135,7 +140,6 @@
     nvidia.modesetting.enable = true;
   };
 
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
