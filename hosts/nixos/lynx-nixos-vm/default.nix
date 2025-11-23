@@ -21,6 +21,9 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
+  # Boot Zen Kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   networking.hostName = "lynx-nixos-vm";
 
   # Enable networking
