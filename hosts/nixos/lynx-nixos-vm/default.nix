@@ -45,6 +45,9 @@
   services.fail2ban.enable = true;
   security.apparmor.enable = true;
   security.rtkit.enable = true;
+
+  ## Firewall
+  networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 22 ];
