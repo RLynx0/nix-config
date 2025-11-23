@@ -35,17 +35,6 @@
     LC_TELEPHONE = "de_AT.UTF-8";
     LC_TIME = "de_AT.UTF-8";
   };
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-anthy
-      ];
-    };
-  };
 
   # Enable Display Manager with Hyprland
   services.xserver.enable = true;

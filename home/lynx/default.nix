@@ -71,6 +71,19 @@
   #     xxx
   # '';
 
+  # fcitx5 config
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-anthy
+      ];
+    };
+  };
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     xdg-ninja
