@@ -106,12 +106,9 @@
       lg2s = "lg2-specific";
       lg3s = "lg3-specific";
 
-      lg1-specific =
-        "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'";
-      lg2-specific =
-        "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
-      lg3-specific =
-        "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(comitted: %cD)%C(reset) %C(auto)%d%C(reset)%n''           %C(white)%s%C(reset)%n''           %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'";
+      lg1-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'";
+      lg2-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
+      lg3-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(comitted: %cD)%C(reset) %C(auto)%d%C(reset)%n''           %C(white)%s%C(reset)%n''           %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'";
 
       staash = "stash --all";
       forget = "!git add . && git stash && git stash clear";
@@ -119,8 +116,10 @@
   };
 
   # WLogout configuration
-  programs.wlogout = let
-    css = pkgs.replaceVars ../files/wlogout/style.css {
+  programs.wlogout = {
+    enable = true;
+
+    style = pkgs.replaceVars ../files/wlogout/style.css {
       lock = ../files/wlogout/lock.png;
       logout = ../files/wlogout/logout.png;
       suspend = ../files/wlogout/suspend.png;
@@ -128,9 +127,7 @@
       shutdown = ../files/wlogout/shutdown.png;
       reboot = ../files/wlogout/reboot.png;
     };
-  in {
-    enable = true;
-    style = css;
+
     layout = [
       {
         label = "lock";

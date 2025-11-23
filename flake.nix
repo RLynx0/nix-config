@@ -14,28 +14,32 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
-    let
+  outputs =
+    { nixpkgs, ... }@inputs:
 
+    let
       system = "x86_64-linux";
       custom_lib = import ./lib { inherit (nixpkgs) lib; };
       lib = nixpkgs.lib.extend (self: super: { custom = custom_lib; });
       pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
+    in
+    {
 
-    in {
+      nixosConfigurations =
+        let
+          nixos_hosts = builtins.attrNames (builtins.readDir ./hosts/nixos);
+          specialArgs = { inherit lib inputs system pkgs-unstable; };
+        in
 
-      nixosConfigurations = let
-
-        specialArgs = { inherit system inputs lib pkgs-unstable; };
-        nixos_hosts = builtins.attrNames (builtins.readDir ./hosts/nixos);
-
-      in builtins.listToAttrs (map (host: {
-        name = host;
-        value = lib.nixosSystem {
-          inherit system specialArgs;
-          modules = [ ./hosts/nixos/${host} ];
-        };
-      }) nixos_hosts);
+        builtins.listToAttrs (
+          map (host: {
+            name = host;
+            value = lib.nixosSystem {
+              inherit system specialArgs;
+              modules = [ ./hosts/nixos/${host} ];
+            };
+          }) nixos_hosts
+        );
 
     };
 }
