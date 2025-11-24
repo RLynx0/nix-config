@@ -6,7 +6,12 @@
 
   imports = [
     ../../common/wlogout
+    ../../common/git-config.nix
   ];
+
+  # User-specific git-config
+  programs.git.userName = "RLynx";
+  programs.git.userEmail = "luc.signin96@gmail.com";
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -92,32 +97,6 @@
   home.packages = with pkgs; [
     xdg-ninja
   ];
-
-  # basic configuration of git
-  programs.git = {
-    enable = true;
-    userName = "RLynx";
-    userEmail = "luc.signin96@gmail.com";
-    aliases = {
-      lg = "lg1";
-      lgs = "lg-specific";
-      lg-specific = "lg1-specific";
-
-      lg1 = "lg1-specific --all";
-      lg2 = "lg2-specific --all";
-      lg3 = "lg3-specific --all";
-      lg1s = "lg1-specific";
-      lg2s = "lg2-specific";
-      lg3s = "lg3-specific";
-
-      lg1-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'";
-      lg2-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
-      lg3-specific = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(comitted: %cD)%C(reset) %C(auto)%d%C(reset)%n''           %C(white)%s%C(reset)%n''           %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'";
-
-      staash = "stash --all";
-      forget = "!git add . && git stash && git stash clear";
-    };
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
