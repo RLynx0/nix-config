@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, pkgs-unstable, ... }:
+{ inputs, pkgs, pkgs-unstable, ... }:
 
 {
   programs.fish.enable = true;
@@ -19,7 +19,8 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.lynx = import ../../../../home/lynx;
+    users.lynx = import ../../../home/users/lynx;
     extraSpecialArgs = { inherit inputs pkgs-unstable; };
   };
 }
+

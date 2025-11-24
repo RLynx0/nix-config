@@ -1,16 +1,15 @@
 {
-  inputs,
-  lib,
   pkgs,
   pkgs-unstable,
+  inputs,
   ...
 }:
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ../../common/users/lynx
     inputs.home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
+    ./users.nix
   ];
 
   nix.settings.experimental-features = [

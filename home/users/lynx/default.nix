@@ -8,61 +8,61 @@
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
   home.file.".local/bin" = {
-    source = ../files/.local/bin;
+    source = ../../files/.local/bin;
     recursive = true;
     executable = true;
   };
   home.file.".config/scripts" = {
-    source = ../files/.config/scripts;
+    source = ../../files/.config/scripts;
     recursive = true;
     executable = true;
   };
 
   home.file.".config/bat" = {
-    source = ../files/.config/bat;
+    source = ../../files/.config/bat;
     recursive = true;
   };
   home.file.".config/easyeffects" = {
-    source = ../files/.config/easyeffects;
+    source = ../../files/.config/easyeffects;
     recursive = true;
   };
   home.file.".config/fish" = {
-    source = ../files/.config/fish;
+    source = ../../files/.config/fish;
     recursive = true;
   };
   home.file.".config/helix" = {
-    source = ../files/.config/helix;
+    source = ../../files/.config/helix;
     recursive = true;
   };
   home.file.".config/kitty" = {
-    source = ../files/.config/kitty;
+    source = ../../files/.config/kitty;
     recursive = true;
   };
   home.file.".config/mako" = {
-    source = ../files/.config/mako;
+    source = ../../files/.config/mako;
     recursive = true;
   };
   home.file.".config/npm" = {
-    source = ../files/.config/npm;
+    source = ../../files/.config/npm;
     recursive = true;
   };
   home.file.".config/starship.toml" = {
-    source = ../files/.config/starship.toml;
+    source = ../../files/.config/starship.toml;
   };
   home.file.".config/waybar" = {
-    source = ../files/.config/waybar;
+    source = ../../files/.config/waybar;
     recursive = true;
   };
   home.file.".config/waypaper" = {
-    source = ../files/.config/waypaper;
+    source = ../../files/.config/waypaper;
     recursive = true;
   };
   home.file.".config/wofi" = {
-    source = ../files/.config/wofi;
+    source = ../../files/.config/wofi;
     recursive = true;
   };
   home.file.".config/zellij" = {
-    source = ../files/.config/zellij;
+    source = ../../files/.config/zellij;
     recursive = true;
   };
 
@@ -119,13 +119,13 @@
   programs.wlogout = {
     enable = true;
 
-    style = pkgs.replaceVars ../files/wlogout/style.css {
-      lock = ../files/wlogout/lock.png;
-      logout = ../files/wlogout/logout.png;
-      suspend = ../files/wlogout/suspend.png;
-      hibernate = ../files/wlogout/hibernate.png;
-      shutdown = ../files/wlogout/shutdown.png;
-      reboot = ../files/wlogout/reboot.png;
+    style = pkgs.replaceVars ../../files/wlogout/style.css {
+      lock = ../../files/wlogout/lock.png;
+      logout = ../../files/wlogout/logout.png;
+      suspend = ../../files/wlogout/suspend.png;
+      hibernate = ../../files/wlogout/hibernate.png;
+      shutdown = ../../files/wlogout/shutdown.png;
+      reboot = ../../files/wlogout/reboot.png;
     };
 
     layout = [
