@@ -12,33 +12,6 @@
   language = [
 
     {
-      name = "rust";
-      debugger = {
-        command = "lldb-vscode";
-        name = "lldb-vscode";
-        port-arg = "--port {}";
-        transport = "tcp";
-
-        templates = [
-          {
-            name = "binary";
-            request = "launch";
-            args = {
-              program = "{0}";
-              runInTerminal = true;
-            };
-            completion = [
-              {
-                completion = "filename";
-                name = "binary";
-              }
-            ];
-          }
-        ];
-      };
-    }
-
-    {
       name = "css";
       auto-format = false;
     }
