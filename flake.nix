@@ -27,7 +27,7 @@
 
       nixosConfigurations =
         let
-          all_hosts = builtins.attrNames (builtins.readDir ./system/hosts);
+          nixos_hosts = builtins.attrNames (builtins.readDir ./hosts/nixos);
           specialArgs = { inherit lib inputs system pkgs-unstable; };
         in
 
@@ -36,9 +36,9 @@
             name = host;
             value = lib.nixosSystem {
               inherit system specialArgs;
-              modules = [ ./system/hosts/${host} ];
+              modules = [ ./hosts/nixos/${host} ];
             };
-          }) all_hosts
+          }) nixos_hosts
         );
 
     };
