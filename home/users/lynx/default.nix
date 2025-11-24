@@ -5,7 +5,7 @@
   home.homeDirectory = "/home/lynx";
 
   imports = [
-    ../../common/wlogout
+    ../../common/hyprland-desktop/full.nix
     ../../common/git-config.nix
   ];
 
