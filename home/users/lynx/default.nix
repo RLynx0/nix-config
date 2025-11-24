@@ -7,6 +7,7 @@
   imports = [
     ../../common/hyprland-desktop/full.nix
     ../../common/git-config.nix
+    ../../common/helix/full.nix
   ];
 
   # User-specific git-config
@@ -37,10 +38,6 @@
   };
   home.file.".config/fish" = {
     source = ../../files/.config/fish;
-    recursive = true;
-  };
-  home.file.".config/helix" = {
-    source = ../../files/.config/helix;
     recursive = true;
   };
   home.file.".config/kitty" = {
