@@ -4,6 +4,10 @@
   home.username = "lynx";
   home.homeDirectory = "/home/lynx";
 
+  imports = [
+    ../../common/wlogout
+  ];
+
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
@@ -113,59 +117,6 @@
       staash = "stash --all";
       forget = "!git add . && git stash && git stash clear";
     };
-  };
-
-  # WLogout configuration
-  programs.wlogout = {
-    enable = true;
-
-    style = pkgs.replaceVars ../../files/wlogout/style.css {
-      lock = ../../files/wlogout/lock.png;
-      logout = ../../files/wlogout/logout.png;
-      suspend = ../../files/wlogout/suspend.png;
-      hibernate = ../../files/wlogout/hibernate.png;
-      shutdown = ../../files/wlogout/shutdown.png;
-      reboot = ../../files/wlogout/reboot.png;
-    };
-
-    layout = [
-      {
-        label = "lock";
-        action = "hyprlock";
-        text = "Lock";
-        keybind = "l";
-      }
-      {
-        label = "hibernate";
-        action = "systemctl hibernate";
-        text = "Hibernate";
-        keybind = "h";
-      }
-      {
-        label = "logout";
-        action = "loginctl terminate-user $USER";
-        text = "Logout";
-        keybind = "e";
-      }
-      {
-        label = "shutdown";
-        action = "systemctl poweroff";
-        text = "Shutdown";
-        keybind = "s";
-      }
-      {
-        label = "suspend";
-        action = "systemctl suspend";
-        text = "Suspend";
-        keybind = "u";
-      }
-      {
-        label = "reboot";
-        action = "systemctl reboot";
-        text = "Reboot";
-        keybind = "r";
-      }
-    ];
   };
 
   # This value determines the home Manager release that your
