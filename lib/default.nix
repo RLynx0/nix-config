@@ -1,5 +1,5 @@
 { lib, ... }:
 
 {
-  fromRoot = lib.path.append ../.;
+  relativeToRoot = lib.path.append ../.;
 }

@@ -9,7 +9,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (lib.custom.fromRoot hosts/common/users/lynx)
+    ../../common/users/lynx
     inputs.home-manager.nixosModules.home-manager
   ];
 
