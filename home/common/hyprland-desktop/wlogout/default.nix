@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-
-  # WLogout configuration
   programs.wlogout = {
     enable = true;
 
