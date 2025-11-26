@@ -44,10 +44,8 @@ let
   fgUnderlined = fg: underline: { inherit fg underline; };
   bgUnderlined = bg: underline: { inherit bg underline; };
   diagnostic = color: {
-    underline = {
-      style = "curly";
-      inherit color;
-    };
+      underline.style = "curly";
+      underline.color = color;
   };
 in
 {
