@@ -1,107 +1,111 @@
+{ ... }:
+
 {
-  theme = "dark-lynx";
+  programs.helix.settings = {
+    
+    editor = {
+      bufferline = "multiple";
+      line-number = "relative";
+      scrolloff = 8;
+      rulers = [ ];
+      file-picker.hidden = false;
+      color-modes = true;
 
-  editor = {
-    bufferline = "multiple";
-    line-number = "relative";
-    scrolloff = 8;
-    rulers = [ ];
-    file-picker.hidden = false;
-    color-modes = true;
+      auto-completion = true;
+      completion-trigger-len = 1;
+      idle-timeout = 0;
+      auto-format = true;
 
-    auto-completion = true;
-    completion-trigger-len = 1;
-    idle-timeout = 0;
-    auto-format = true;
+      indent-guides = {
+        render = true;
+        character = "▏";
+      };
 
-    indent-guides = {
-      render = true;
-      character = "▏";
+      statusline = {
+        left = [
+          "mode"
+          "spinner"
+          "file-name"
+        ];
+        center = [
+          # "file-base-name"
+          # "separator"
+          # "selections"
+          # "position-percentage"
+          # "total-line-numbers"
+        ];
+        right = [
+          "diagnostics"
+          "file-encoding"
+          "file-type"
+          "separator"
+          "position"
+        ];
+
+        separator = "│";
+        mode.normal = "NOR";
+        mode.insert = "INS";
+        mode.select = "SEL";
+      };
     };
 
-    statusline = {
-      left = [
-        "mode"
-        "spinner"
-        "file-name"
+    keys.normal = {
+      esc = [
+        "collapse_selection"
+        "keep_primary_selection"
       ];
-      center = [
-        # "file-base-name"
-        # "separator"
-        # "selections"
-        # "position-percentage"
-        # "total-line-numbers"
-      ];
-      right = [
-        "diagnostics"
-        "file-encoding"
-        "file-type"
-        "separator"
-        "position"
-      ];
 
-      separator = "│";
-      mode.normal = "NOR";
-      mode.insert = "INS";
-      mode.select = "SEL";
-    };
-  };
+      Y = "yank_joined";
 
-  keys.normal = {
-    esc = [
-      "collapse_selection"
-      "keep_primary_selection"
-    ];
+      ret = {
+        w = ":w";
+        W = ":w!";
+        q = ":q";
+        Q = ":q!";
+        x = ":bc";
+        X = ":bc!";
+        f = ":format";
+        r = ":reload-all";
 
-    Y = "yank_joined";
+        c = ":config-reload";
+        C = ":config-open";
+        A-c = ":o .helix/config.toml";
+        s = ":o ~/.config/helix/themes/dark-lynx.toml";
+        l = ":lsp-restart";
+        L = ":o ~/.config/helix/languages.toml";
+        A-l = ":o .helix/languages.toml";
+      };
 
-    ret = {
-      w = ":w";
-      W = ":w!";
-      q = ":q";
-      Q = ":q!";
-      x = ":bc";
-      X = ":bc!";
-      f = ":format";
-      r = ":reload-all";
+      "+" = {
+        b = ":sh cargo build";
+        B = ":sh cargo build --release";
+        r = ":sh cargo run";
+        t = ":sh cargo test";
+        T = ":sh cargo test -- --nocapture";
+        d = ":sh cargo doc --open";
+        f = ":sh leptosfmt .";
+      };
 
-      c = ":config-reload";
-      C = ":config-open";
-      A-c = ":o .helix/config.toml";
-      s = ":o ~/.config/helix/themes/dark-lynx.toml";
-      l = ":lsp-restart";
-      L = ":o ~/.config/helix/languages.toml";
-      A-l = ":o .helix/languages.toml";
+      "#" = {
+        s = ":set whitespace.render all";
+        S = ":set whitespace.render none";
+        r = ":set rulers [80]";
+        R = ":set rulers []";
+        f = ":toggle auto-format";
+        g = ":toggle indent-guides.render";
+        h = ":toggle lsp.display-inlay-hints";
+        c = ":toggle color-modes";
+        w = ":toggle soft-wrap.enable";
+      };
     };
 
-    "+" = {
-      b = ":sh cargo build";
-      B = ":sh cargo build --release";
-      r = ":sh cargo run";
-      t = ":sh cargo test";
-      T = ":sh cargo test -- --nocapture";
-      d = ":sh cargo doc --open";
-      f = ":sh leptosfmt .";
+    keys.insert = {
+      C-h = "move_char_left";
+      C-l = "move_char_right";
+      C-w = "move_next_word_start";
+      C-e = "move_next_word_end";
+      C-b = "move_prev_word_start";
     };
-
-    "#" = {
-      s = ":set whitespace.render all";
-      S = ":set whitespace.render none";
-      r = ":set rulers [80]";
-      R = ":set rulers []";
-      f = ":toggle auto-format";
-      g = ":toggle indent-guides.render";
-      h = ":toggle lsp.display-inlay-hints";
-      c = ":toggle color-modes";
-      w = ":toggle soft-wrap.enable";
-    };
-  };
-
-  keys.insert = {
-    C-h = "move_char_left";
-    C-l = "move_char_right";
-    C-w = "move_next_word_start";
-    C-e = "move_next_word_end";
-    C-b = "move_prev_word_start";
+    
   };
 }

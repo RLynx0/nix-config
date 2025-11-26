@@ -1,6 +1,11 @@
 { pkgs-unstable, ... }:
 
 {
+  imports = [
+    ./settings.nix
+    ./languages.nix
+  ];
+  
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -22,8 +27,7 @@
       vscode-langservers-extracted
     ];
 
-    settings = import ./settings.nix;
-    languages = import ./languages.nix;
     themes.dark-lynx = import ./themes/dark-lynx.nix;
+    settings.theme = "dark-lynx";
   };
 }
