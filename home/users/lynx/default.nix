@@ -8,6 +8,7 @@
     ../../common/hyprland-desktop/full.nix
     ../../common/git-config.nix
     ../../common/helix/full.nix
+    ../../common/terminal-apps/toys.nix
   ];
 
   # User-specific git-config
