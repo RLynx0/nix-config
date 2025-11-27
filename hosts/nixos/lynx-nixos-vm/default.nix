@@ -42,7 +42,7 @@
     LC_MEASUREMENT = "de_AT.UTF-8";
     LC_MONETARY = "de_AT.UTF-8";
     LC_NAME = "de_AT.UTF-8";
-    LC_NUMERIC = "de_AT.UTF-8";
+    LC_NUMERIC = "en_CA.UTF-8";
     LC_PAPER = "de_AT.UTF-8";
     LC_TELEPHONE = "de_AT.UTF-8";
     LC_TIME = "de_AT.UTF-8";
