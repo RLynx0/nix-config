@@ -72,11 +72,6 @@
     recursive = true;
   };
 
-  # encode the file content in nix configuration file directly
-  # home.file.".xxx".text = ''
-  #     xxx
-  # '';
-
   # fcitx5 config
   i18n.inputMethod = {
     enable = true;
