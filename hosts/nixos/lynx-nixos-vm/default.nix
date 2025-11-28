@@ -92,6 +92,8 @@
   fonts.packages = with pkgs; [
     noto-fonts
     nerd-fonts.caskaydia-cove
+    source-han-sans-japanese
+    source-han-serif-japanese
   ];
 
   # List services that you want to enable:
