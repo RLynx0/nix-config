@@ -4,11 +4,11 @@
   home.packages = with pkgs; [
     cava
     cbonsai
-    cmatrix
     cowsay
+    fastfetch
     fortune
     lolcat
-    fastfetch
+    unimatrix
     sl
   ];
 }
