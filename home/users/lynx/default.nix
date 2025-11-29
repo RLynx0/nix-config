@@ -6,9 +6,7 @@
 
   imports = [
     ../../common/hyprland-desktop/full.nix
-    ../../common/cli-apps/terminal-toys.nix
-    ../../common/git-config.nix
-    ../../common/helix/full.nix
+    ../../common/cli-apps/full.nix
   ];
 
   # User-specific git-config
