@@ -13,6 +13,7 @@
     jq
     libnotify
     tldr
+    tree
     xdg-ninja
   ];
 }
