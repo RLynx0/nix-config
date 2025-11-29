@@ -149,25 +149,13 @@
     (with pkgs; [
       ardour
       calf
-      cava
-      fastfetch
-      gavin-bc
-      gh
       git
-      home-manager
-      htop
       hypridle
       hyprlock
       kitty
-      lazygit
       lf
-      libnotify
       mako
-      nil
-      nixd
-      nixfmt-rfc-style
       rustup
-      starship
       stow
       tree
       waybar
@@ -175,8 +163,6 @@
       wofi
       xfce.thunar
       xfce.thunar-volman
-      zellij
-      zoxide
     ])
     ++ (with pkgs-unstable; [ helix ]);
 }
