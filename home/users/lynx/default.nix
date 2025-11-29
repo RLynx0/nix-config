@@ -6,6 +6,7 @@
 
   imports = [
     ../../common/hyprland-desktop/full.nix
+    ../../common/terminal-ux/full.nix
     ../../common/cli-apps/full.nix
   ];
 
