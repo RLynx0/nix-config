@@ -37,6 +37,10 @@
     source = ../../files/.config/easyeffects;
     recursive = true;
   };
+  home.file.".config/fastfetch" = {
+    source = ../../files/.config/fastfetch;
+    recursive = true;
+  };
   home.file.".config/fish" = {
     source = ../../files/.config/fish;
     recursive = true;
