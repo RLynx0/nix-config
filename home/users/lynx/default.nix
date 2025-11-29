@@ -89,11 +89,6 @@
     };
   };
 
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    xdg-ninja
-  ];
-
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
