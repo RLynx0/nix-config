@@ -14,9 +14,6 @@
   programs.git.userName = "RLynx";
   programs.git.userEmail = "luc.signin96@gmail.com";
 
-  # link the configuration file in current directory to the specified location in home directory
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
   home.file.".local/bin" = {
     source = ../../files/.local/bin;
     recursive = true;
@@ -38,10 +35,6 @@
   };
   home.file.".config/fastfetch" = {
     source = ../../files/.config/fastfetch;
-    recursive = true;
-  };
-  home.file.".config/fish" = {
-    source = ../../files/.config/fish;
     recursive = true;
   };
   home.file.".config/kitty" = {
