@@ -151,7 +151,19 @@
         thunar
         calc
         mako
+
+        # Gaming shit
+        protonup-ng
       ];
+
+      # Gaming shit also
+      programs.gamemode.enable = true;
+      programs.steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+      };
+      services.xserver.videoDrivers = [ "amdgpu" ];
+      hardware.graphics.enable = true;
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
