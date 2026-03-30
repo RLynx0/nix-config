@@ -113,6 +113,21 @@
       blender
       inkscape
 
+      # For helix (lsp)
+      clang-tools
+      emmet-language-server
+      lldb
+      lua-language-server
+      nil
+      nixd
+      nixfmt
+      perlnavigator
+      rust-analyzer
+      taplo
+      tinymist
+      tombi
+      vscode-langservers-extracted
+
       # For hyprland
       waybar
       waypaper
