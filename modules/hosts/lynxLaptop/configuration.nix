@@ -154,6 +154,8 @@
 
         # Gaming shit
         protonup-ng
+        bottles
+        lutris
       ];
 
       # Gaming shit also
