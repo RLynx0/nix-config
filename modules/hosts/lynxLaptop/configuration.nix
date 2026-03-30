@@ -122,6 +122,7 @@
         krita
         blender
         inkscape
+        kdePackages.gwenview
 
         # For helix (lsp)
         clang-tools
