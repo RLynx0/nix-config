@@ -123,6 +123,7 @@
         blender
         inkscape
         kdePackages.gwenview
+        libreoffice
 
         # For helix (lsp)
         clang-tools
