@@ -107,24 +107,25 @@
 
       # List packages installed in system profile. To search, run:
       environment.systemPackages = with pkgs; [
+        gh
         git
         helix
+        jq
         kitty
         lazygit
-        wget
-        jq
-        gh
         starship
+        wget
         zoxide
 
         # Random Apps
         ardour
-        krita
         blender
         inkscape
         kdePackages.gwenview
+        krita
         libreoffice
         obs-studio
+        obsidian
 
         # For helix (lsp)
         clang-tools
@@ -142,22 +143,22 @@
         vscode-langservers-extracted
 
         # For hyprland
+        calc
+        hypridle
+        hyprlock
+        libnotify
+        mako
+        swww
+        thunar
         waybar
         waypaper
-        swww
         wlogout
-        hyprlock
-        hypridle
         wofi
-        libnotify
-        thunar
-        calc
-        mako
 
         # Gaming shit
-        protonup-ng
         bottles
         lutris
+        protonup-ng
       ];
 
       # Gaming shit also
