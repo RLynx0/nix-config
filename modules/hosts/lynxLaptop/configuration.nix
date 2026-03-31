@@ -124,6 +124,7 @@
         inkscape
         kdePackages.gwenview
         libreoffice
+        obs-studio
 
         # For helix (lsp)
         clang-tools
