@@ -116,6 +116,7 @@
         starship
         wget
         zoxide
+        cava
 
         # Random Apps
         ardour
