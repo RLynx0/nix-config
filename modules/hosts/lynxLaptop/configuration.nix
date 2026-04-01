@@ -127,6 +127,7 @@
         libreoffice
         obs-studio
         obsidian
+        spotify
 
         # For helix (lsp)
         clang-tools
