@@ -113,6 +113,7 @@
         jq
         kitty
         lazygit
+        playerctl
         starship
         wget
         zoxide
