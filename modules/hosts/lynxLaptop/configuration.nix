@@ -155,6 +155,7 @@
         waybar
         waypaper
         wlogout
+        wl-gammarelay-rs
         wofi
 
         # Gaming shit
