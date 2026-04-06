@@ -126,6 +126,7 @@
 
         # Random Apps
         ardour
+        audacity
         blender
         discord
         inkscape
