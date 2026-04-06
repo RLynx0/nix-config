@@ -131,6 +131,7 @@
         obs-studio
         obsidian
         spotify
+        thunderbird
 
         # Audio Plugins!!!
         calf
