@@ -114,6 +114,7 @@
         jq
         kitty
         lazygit
+        ffmpeg
         playerctl
         starship
         wget
