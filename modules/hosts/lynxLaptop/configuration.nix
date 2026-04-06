@@ -119,6 +119,9 @@
         wget
         zoxide
         cava
+        cliphist
+        xclip
+        wl-clip-persist
 
         # Random Apps
         ardour
