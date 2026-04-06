@@ -136,6 +136,7 @@
         obsidian
         spotify
         thunderbird
+        vlc
 
         # Audio Plugins!!!
         calf
