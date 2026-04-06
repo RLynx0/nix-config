@@ -132,6 +132,13 @@
         obsidian
         spotify
 
+        # Audio Plugins!!!
+        calf
+        dragonfly-reverb
+        helm
+        lsp-plugins
+        mda_lv2
+
         # For helix (lsp)
         clang-tools
         emmet-language-server
