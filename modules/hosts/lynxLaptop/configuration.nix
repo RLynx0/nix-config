@@ -162,6 +162,7 @@
         hyprlock
         libnotify
         mako
+        rofimoji
         thunar
         waybar
         waypaper
