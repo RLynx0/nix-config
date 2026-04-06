@@ -147,17 +147,17 @@
         vscode-langservers-extracted
 
         # For hyprland
+        awww
         calc
         hypridle
         hyprlock
         libnotify
         mako
-        swww
         thunar
         waybar
         waypaper
-        wlogout
         wl-gammarelay-rs
+        wlogout
         wofi
 
         # Gaming shit
