@@ -122,6 +122,7 @@
         # Random Apps
         ardour
         blender
+        discord
         inkscape
         kdePackages.gwenview
         krita
