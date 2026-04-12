@@ -101,6 +101,8 @@
         ];
       };
 
+      services.locate.enable = true;
+
       programs.fish.enable = true;
 
       # Allow unfree packages
