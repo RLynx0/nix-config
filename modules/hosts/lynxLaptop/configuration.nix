@@ -126,7 +126,7 @@
         zoxide
         cava
         cliphist
-        xclip
+        wl-clipboard
         wl-clip-persist
 
         # Random Apps
