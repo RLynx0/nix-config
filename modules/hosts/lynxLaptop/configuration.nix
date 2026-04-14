@@ -110,6 +110,8 @@
 
       # List packages installed in system profile. To search, run:
       environment.systemPackages = with pkgs; [
+        direnv
+        nix-direnv
         gh
         git
         helix
