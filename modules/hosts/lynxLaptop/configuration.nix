@@ -116,6 +116,7 @@
         git
         helix
         jq
+        just
         kitty
         lazygit
         ffmpeg
