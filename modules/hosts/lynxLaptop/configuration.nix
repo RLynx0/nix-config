@@ -138,6 +138,7 @@
         kdePackages.gwenview
         krita
         libreoffice
+        musescore
         obs-studio
         obsidian
         spotify
