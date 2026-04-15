@@ -197,6 +197,13 @@
       services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.graphics.enable = true;
 
+      # Fonts!!
+      fonts.packages = with pkgs; [
+        nerd-fonts.meslo-lg
+        cascadia-code
+        corefonts
+      ];
+
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       # programs.mtr.enable = true;
