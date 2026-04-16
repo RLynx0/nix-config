@@ -161,7 +161,6 @@
         nixd
         nixfmt
         perlnavigator
-        rust-analyzer
         taplo
         tinymist
         tombi
