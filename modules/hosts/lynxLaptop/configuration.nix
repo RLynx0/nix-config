@@ -110,6 +110,7 @@
 
       # List packages installed in system profile. To search, run:
       environment.systemPackages = with pkgs; [
+        bc
         direnv
         nix-direnv
         gh
@@ -126,6 +127,7 @@
         zoxide
         cava
         cliphist
+        unzip
         wl-clipboard
         wl-clip-persist
 
@@ -155,7 +157,6 @@
         # For helix (lsp)
         clang-tools
         emmet-language-server
-        lldb
         lua-language-server
         nil
         nixd
