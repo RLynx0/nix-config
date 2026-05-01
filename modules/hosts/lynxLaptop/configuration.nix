@@ -138,6 +138,7 @@
         discord
         inkscape
         kdePackages.gwenview
+        kdePackages.kdenlive
         krita
         libreoffice
         musescore
