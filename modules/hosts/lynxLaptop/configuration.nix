@@ -173,6 +173,7 @@
         calc
         hypridle
         hyprlock
+        inotify-tools
         libnotify
         mako
         rofimoji
