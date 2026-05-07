@@ -136,6 +136,7 @@
         audacity
         blender
         discord
+        godot
         inkscape
         kdePackages.gwenview
         kdePackages.kdenlive
