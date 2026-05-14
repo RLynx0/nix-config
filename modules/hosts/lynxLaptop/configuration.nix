@@ -177,6 +177,7 @@
         inotify-tools
         libnotify
         mako
+        pavucontrol
         rofimoji
         thunar
         waybar
