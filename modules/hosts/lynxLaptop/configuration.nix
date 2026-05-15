@@ -206,6 +206,10 @@
       };
       services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.graphics.enable = true;
+      hardware.xpadneo.enable = true;
+      services.udev.packages = with pkgs; [
+        game-devices-udev-rules
+      ];
 
       # Fonts!!
       fonts.packages = with pkgs; [
