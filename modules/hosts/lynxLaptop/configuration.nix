@@ -189,6 +189,7 @@
 
         # Gaming shit
         bottles
+        dolphin-emu
         lutris
         protonup-ng
       ];
