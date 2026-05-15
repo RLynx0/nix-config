@@ -95,6 +95,7 @@
         isNormalUser = true;
         description = "Lynx";
         extraGroups = [
+          "input"
           "networkmanager"
           "wheel"
         ];
