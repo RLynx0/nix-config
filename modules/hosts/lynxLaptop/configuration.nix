@@ -172,6 +172,7 @@
         # For hyprland
         awww
         calc
+        grimblast
         hypridle
         hyprlock
         inotify-tools
