@@ -18,7 +18,6 @@
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
       boot.kernelModules = [
-        "hid_xpadneo"
         "uhid"
       ];
       boot.extraModprobeConfig = ''
@@ -214,7 +213,6 @@
       };
       services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.graphics.enable = true;
-      hardware.xpadneo.enable = true;
       services.udev.packages = with pkgs; [
         game-devices-udev-rules
       ];
