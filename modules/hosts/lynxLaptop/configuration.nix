@@ -199,6 +199,7 @@
         wofi
 
         # Gaming shit
+        azahar
         bottles
         dolphin-emu
         lutris
