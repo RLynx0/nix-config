@@ -122,8 +122,10 @@
       # List packages installed in system profile. To search, run:
       environment.systemPackages = with pkgs; [
         bc
+        cava
+        cliphist
         direnv
-        nix-direnv
+        ffmpeg
         gh
         git
         helix
@@ -131,16 +133,15 @@
         just
         kitty
         lazygit
-        ffmpeg
+        nix-direnv
         playerctl
         starship
-        wget
-        zoxide
-        cava
-        cliphist
+        typst
         unzip
-        wl-clipboard
+        wget
         wl-clip-persist
+        wl-clipboard
+        zoxide
 
         # Random Apps
         ardour
