@@ -21,6 +21,9 @@
         "hid_xpadneo"
         "uhid"
       ];
+      boot.extraModprobeConfig = ''
+        options btusb enable_autosuspend=n
+      '';
 
       networking.hostName = "lynx-laptop"; # Define your hostname.
       # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
