@@ -202,8 +202,8 @@
         azahar
         bottles
         dolphin-emu
+        gopher64
         lutris
-        mupen64plus
         protonup-ng
       ];
 
