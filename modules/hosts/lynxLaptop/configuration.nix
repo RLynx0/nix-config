@@ -203,6 +203,7 @@
         bottles
         dolphin-emu
         lutris
+        mupen64plus
         protonup-ng
       ];
 
