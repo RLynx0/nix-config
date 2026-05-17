@@ -17,12 +17,6 @@
       # Bootloader.
       boot.loader.systemd-boot.enable = true;
       boot.loader.efi.canTouchEfiVariables = true;
-      boot.kernelModules = [
-        "uhid"
-      ];
-      boot.extraModprobeConfig = ''
-        options btusb enable_autosuspend=n
-      '';
 
       networking.hostName = "lynx-laptop"; # Define your hostname.
       # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
