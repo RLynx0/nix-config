@@ -226,7 +226,6 @@
       systemd.services.lactd.wantedBy = [ "multi-user.target" ];
       hardware.graphics.extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        amdvlk
       ];
 
       # Fonts!!
