@@ -117,6 +117,7 @@
       environment.systemPackages = with pkgs; [
         bc
         cava
+        clinfo
         cliphist
         direnv
         ffmpeg
@@ -147,6 +148,7 @@
         kdePackages.gwenview
         kdePackages.kdenlive
         krita
+        lact
         libreoffice
         musescore
         obs-studio
@@ -208,10 +210,23 @@
         enable = true;
         gamescopeSession.enable = true;
       };
-      services.xserver.videoDrivers = [ "amdgpu" ];
       hardware.graphics.enable = true;
       services.udev.packages = with pkgs; [
         game-devices-udev-rules
+      ];
+
+      # AMD GPU
+      boot.initrd.kernelModules = [ "amdgpu" ];
+      services.xserver.videoDrivers = [ "amdgpu" ];
+      systemd.tmpfiles.rules = [
+        "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+      ];
+      services.lact.enable = true;
+      systemd.packages = with pkgs; [ lact ];
+      systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+      hardware.graphics.extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        amdvlk
       ];
 
       # Fonts!!
