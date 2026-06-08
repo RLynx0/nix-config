@@ -183,6 +183,7 @@
         grimblast
         hypridle
         hyprlock
+        hyprpicker
         inotify-tools
         libnotify
         mako
