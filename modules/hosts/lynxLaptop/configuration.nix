@@ -180,6 +180,7 @@
         # For hyprland
         awww
         calc
+        dex
         grimblast
         hypridle
         hyprlock
