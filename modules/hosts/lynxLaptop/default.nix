@@ -20,11 +20,11 @@
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
         home-manager.users.lynx = import ../../../home/lynx/default.nix;
       }
-      # Uncomment to activate Stylix theming (also uncomment stylix/default.nix body):
-      # inputs.stylix.nixosModules.stylix
-      # (import ../../../stylix/default.nix)
+      inputs.stylix.nixosModules.stylix
+      (import ../../../stylix/default.nix)
     ];
   };
 }
