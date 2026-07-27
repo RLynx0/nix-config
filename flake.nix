@@ -5,7 +5,7 @@
     nixkgs-stable.url = "github:nixos/nixpkgs/25.11";
 
     # -- Community Modules
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:nix-community/stylix";
