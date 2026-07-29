@@ -10,6 +10,7 @@
     gh
     git
     helix
+    htop
     jq
     just
     kitty
