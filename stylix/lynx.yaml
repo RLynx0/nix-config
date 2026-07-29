@@ -1,0 +1,21 @@
+scheme: "lynx"
+author: "lynx"
+variant: "dark"
+
+palette:
+  base00: "121416"  # background
+  base01: "080A0C"  # black (alt background)
+  base02: "222426"  # bright black (selection)
+  base03: "444648"  # comments (derived)
+  base04: "888888"  # dark foreground (derived)
+  base05: "dddddd"  # foreground
+  base06: "f8f8f8"  # bright white
+  base07: "ffffff"  # pure white (derived)
+  base08: "D05850"  # red
+  base09: "D0B080"  # orange (yellow)
+  base0A: "FFF0B0"  # bright yellow
+  base0B: "60D0A0"  # green
+  base0C: "60C0C0"  # cyan
+  base0D: "50A0D0"  # blue
+  base0E: "C080D8"  # magenta
+  base0F: "E88080"  # bright red

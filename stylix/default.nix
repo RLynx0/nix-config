@@ -5,7 +5,7 @@
 
   stylix.enable = true;
   stylix.image = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+  stylix.base16Scheme = ./lynx.yaml;
   stylix.polarity = "dark";
 
   stylix.fonts = {
