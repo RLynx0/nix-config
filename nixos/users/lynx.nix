@@ -4,6 +4,7 @@
     isNormalUser = true;
     description = "Lynx";
     extraGroups = [
+      "audio"
       "input"
       "networkmanager"
       "wheel"
