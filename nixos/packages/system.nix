@@ -23,6 +23,7 @@
     wget
     wl-clip-persist
     wl-clipboard
+    zellij
     zoxide
   ];
 }
