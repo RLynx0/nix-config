@@ -7,7 +7,6 @@
     nil
     nixd
     nixfmt
-    perlnavigator
     taplo
     tinymist
     tombi
