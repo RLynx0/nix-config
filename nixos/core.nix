@@ -5,5 +5,7 @@
     "flakes"
   ];
 
+  environment.defaultPackages = [ ];
+
   nixpkgs.config.allowUnfree = true;
 }

@@ -17,7 +17,9 @@
     lazygit
     nix-direnv
     playerctl
+    rsync
     starship
+    strace
     tree
     typst
     unzip
