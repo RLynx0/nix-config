@@ -6,6 +6,7 @@
     dolphin-emu
     gopher64
     lutris
+    prismlauncher
     protonup-ng
   ];
 
