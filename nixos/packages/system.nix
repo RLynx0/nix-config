@@ -18,6 +18,7 @@
     nix-direnv
     playerctl
     starship
+    tree
     typst
     unzip
     wget
