@@ -14,8 +14,8 @@
       name = "CaskaydiaCove Nerd Font Mono";
     };
     sansSerif = {
-      package = pkgs.nerd-fonts.meslo-lg;
-      name = "MesloLGS Nerd Font";
+      package = pkgs.corefonts;
+      name = "Helvetica";
     };
   };
 
