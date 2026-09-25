@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  services.gvfs.enable = true;
   services.locate.enable = true;
   services.printing = {
     enable = true;
