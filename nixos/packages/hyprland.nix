@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     awww
+    baobab
     calc
     dex
     grimblast
