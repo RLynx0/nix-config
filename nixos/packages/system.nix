@@ -17,6 +17,7 @@
     lazygit
     nix-direnv
     playerctl
+    ripgrep
     rsync
     starship
     strace
