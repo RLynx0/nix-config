@@ -13,11 +13,16 @@
     mako
     pavucontrol
     rofimoji
-    thunar
     waybar
     waypaper
     wl-gammarelay-rs
     wlogout
     wofi
+  ];
+
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs; [
+    thunar-archive-plugin
+    thunar-volman
   ];
 }
