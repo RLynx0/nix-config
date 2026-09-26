@@ -8,6 +8,7 @@
     lutris
     prismlauncher
     protonup-ng
+    unofficial-homestuck-collection
   ];
 
   programs.gamemode.enable = true;
