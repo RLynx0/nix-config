@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     awww
     baobab
+    brightnessctl
     calc
     dex
     grimblast
