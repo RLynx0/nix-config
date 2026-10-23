@@ -13,6 +13,7 @@
     inotify-tools
     libnotify
     mako
+    mpv
     pavucontrol
     rofimoji
     waybar
