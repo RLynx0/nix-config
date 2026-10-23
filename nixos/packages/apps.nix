@@ -4,6 +4,7 @@
     discord
     kdePackages.gwenview
     kdePackages.kdenlive
+    libdvdcss
     libreoffice
     obs-studio
     obsidian
