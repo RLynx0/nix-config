@@ -27,7 +27,7 @@ let
     while true; do
       if egpu_connected; then
         ${pkgs.systemd}/bin/systemd-inhibit \
-          --what=sleep \
+          --what=sleep:handle-lid-switch \
           --mode=block \
           --who="AMD Radeon eGPU" \
           --why="Prevent suspend while the eGPU is connected" \
