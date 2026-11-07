@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    awww
     baobab
     brightnessctl
     calc
@@ -12,7 +11,6 @@
     hyprpicker
     inotify-tools
     libnotify
-    mako
     pavucontrol
     rofimoji
     noctalia
