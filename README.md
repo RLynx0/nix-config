@@ -5,7 +5,7 @@ Bluetooth, UPower, power profiles, fingerprint authentication and GNOME Keyring.
 Home Manager owns Noctalia, the existing Hyprland Lua configuration, desktop
 helpers, Fish, Starship, Kitty, Helix, Zellij, Bat, Cava and Direnv.
 
-## First cutover from Stow
+## Applying and validating changes
 
 Build before changing any live configuration:
 
@@ -14,19 +14,8 @@ nix flake check
 nixos-rebuild build --flake .#lynx-laptop
 ```
 
-Then, from this repository:
-
-```sh
-bash scripts/prepare-home-manager.sh
-sudo nixos-rebuild test --flake .#lynx-laptop
-```
-
-The preparation script detaches only symlinks pointing into `~/.dotfiles`,
-keeps their absolute targets in `~/.local/state/home-manager-migration`, copies
-wallpapers into `~/Personal/Pictures/wallpapers`, preserves Fish's mutable
-universal variables, and backs up Noctalia's runtime settings. Existing dotfiles
-are retained for rollback; their migrated paths must remain ignored by Stow.
-The corresponding `.stow-local-ignore` change is in the dotfiles repository.
+Use `sudo nixos-rebuild test --flake .#lynx-laptop` before switching permanently.
+Home Manager-managed paths must remain ignored by Stow in `~/.dotfiles`.
 
 Log out and select **Hyprland (UWSM)** in GDM. Check `systemctl --user status
 noctalia easyeffects wl-gammarelay`, then test launcher, session panel, clipboard,
@@ -41,11 +30,11 @@ After the checks:
 sudo nixos-rebuild switch --flake .#lynx-laptop
 ```
 
-For rollback, select the previous NixOS generation and replace the generated
-configuration paths with symlinks to the absolute targets saved under
-`~/.local/state/home-manager-migration`. Restore `noctalia-settings.toml` to
-`~/.local/state/noctalia/settings.toml` and undo the Stow ignore change.
-Do not rerun preparation on already Home Manager-managed paths.
+For rollback, select the previous NixOS generation.
+
+User environment variables, XDG paths and extra PATH entries are configured in
+`home/lynx/environment.nix`. Fish aliases and functions are in
+`home/lynx/programs.nix`.
 
 ## Desktop controls
 

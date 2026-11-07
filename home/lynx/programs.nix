@@ -1,9 +1,33 @@
-{ ... }:
+{ config, ... }:
+let
+  notification = "${config.home.homeDirectory}/Personal/Music/sounds/martlet-bell.wav";
+  alertImage = "${config.home.homeDirectory}/Personal/Pictures/renders/SuperSaiyanMartletSmol.gif";
+in
 {
   programs = {
     fish = {
       enable = true;
-      shellInit = builtins.readFile ./config/fish/config.fish;
+      shellAliases = {
+        helix = "hx";
+        bg-sysup = "sysup -cypa '${notification}' -i '${alertImage}'";
+        rereflect = "rereflect -a '${notification}' -i '${alertImage}'";
+        icat = "kitty +kitten icat";
+        whats-my-motherfucking-name = "whoami";
+      };
+      functions = {
+        fish_greeting = ''
+          if command -vq souls.sh
+              souls.sh -t darklynx m | awk '
+                  BEGIN { print "" }
+                  { print "  " $0 }
+                  END { print "" }'
+          else if command -vq neofetch
+              echo
+              neofetch | neofetch | grep --color=never -oxE '^.+$'
+          end
+        '';
+        starship_transient_prompt_func = "starship module character";
+      };
     };
     starship = {
       enable = true;
@@ -16,14 +40,16 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      config.log_format = "-";
+      silent = true;
     };
     kitty = {
       enable = true;
+      shellIntegration.mode = "no-cursor";
       extraConfig = builtins.readFile ./config/kitty/kitty.conf;
     };
     helix = {
       enable = true;
+      defaultEditor = true;
       extraConfig = builtins.readFile ./config/helix/config.toml;
     };
     zellij = {

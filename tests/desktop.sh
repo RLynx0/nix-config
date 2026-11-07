@@ -76,27 +76,4 @@ test "$(grep -c '^panic -r$' "$TEST_LOG")" = 2
 # Restore-only must not change workspaces when there is no saved state.
 bash "$repo/home/lynx/config/hypr/scripts/panic/panic.sh" -r
 
-export HOME="$scratch/home"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-mkdir -p "$HOME/.dotfiles/.config/hypr/wallpapers" "$HOME/.dotfiles/.config/fish"
-mkdir -p "$HOME/.dotfiles/.config/scripts" "$XDG_CONFIG_HOME" "$XDG_STATE_HOME/noctalia"
-printf wallpaper > "$HOME/.dotfiles/.config/hypr/wallpapers/test.jpg"
-printf fish-state > "$HOME/.dotfiles/.config/fish/fish_variables"
-printf helper > "$HOME/.dotfiles/.config/scripts/unrelated.sh"
-ln -s "$HOME/.dotfiles/.config/hypr" "$XDG_CONFIG_HOME/hypr"
-ln -s "$HOME/.dotfiles/.config/fish" "$XDG_CONFIG_HOME/fish"
-ln -s "$HOME/.dotfiles/.config/scripts" "$XDG_CONFIG_HOME/scripts"
-printf override > "$XDG_STATE_HOME/noctalia/settings.toml"
-bash "$repo/scripts/prepare-home-manager.sh"
-test ! -L "$XDG_CONFIG_HOME/hypr"
-test -f "$HOME/Personal/Pictures/wallpapers/test.jpg"
-test "$(cat "$XDG_CONFIG_HOME/fish/fish_variables")" = fish-state
-test -L "$XDG_CONFIG_HOME/scripts/unrelated.sh"
-test -f "$XDG_STATE_HOME/home-manager-migration/noctalia-settings.toml"
-test ! -e "$XDG_STATE_HOME/noctalia/settings.toml"
-test -L "$XDG_STATE_HOME/home-manager-migration/hypr"
-test -d "$HOME/.dotfiles/.config/hypr"
-bash "$repo/scripts/prepare-home-manager.sh"
-
 echo "Desktop script tests passed"

@@ -25,7 +25,6 @@
               export XDG_RUNTIME_DIR="$TMPDIR/runtime"
               mkdir -p "$HOME" "$XDG_RUNTIME_DIR"
               bash ${../.}/tests/desktop.sh
-              fish --no-config --no-execute ${../home/lynx/config/fish/config.fish}
               Hyprland --verify-config -c ${../home/lynx/config/hypr}/hyprland.lua
               touch "$out"
             '';
