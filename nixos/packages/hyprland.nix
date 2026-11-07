@@ -15,8 +15,7 @@
     mako
     pavucontrol
     rofimoji
-    waybar
-    waypaper
+    noctalia
     wl-gammarelay-rs
     wlogout
     wofi
