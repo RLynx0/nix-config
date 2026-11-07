@@ -8,17 +8,12 @@ export XDG_CONFIG_HOME="$scratch/config"
 export XDG_STATE_HOME="$scratch/state"
 export XDG_RUNTIME_DIR="$scratch/runtime"
 export TEST_LOG="$scratch/commands"
-export TEST_LOCKED=false
 export TEST_LOCK_FAIL=0
 mkdir -p "$scratch/bin" "$XDG_CONFIG_HOME/scripts" "$XDG_RUNTIME_DIR"
 export PATH="$scratch/bin:$PATH"
 
 cat > "$scratch/bin/noctalia" <<'EOF'
 #!/usr/bin/env bash
-if [ "$*" = 'msg status' ]; then
-    printf '{"locked":%s}\n' "$TEST_LOCKED"
-    exit
-fi
 printf '%s\n' "$*" >> "$TEST_LOG"
 if [ "$*" = 'msg session lock' ] && [ "$TEST_LOCK_FAIL" = 1 ]; then
     exit 1
@@ -32,16 +27,17 @@ chmod +x "$scratch/bin/noctalia" "$XDG_CONFIG_HOME/scripts/gammashift.sh"
 sed -i "1c#!$(command -v bash)" "$scratch/bin/noctalia" "$XDG_CONFIG_HOME/scripts/gammashift.sh"
 
 dim="$repo/home/lynx/config/hypr/scripts/idle-dim.sh"
-bash "$dim" locked
-test ! -d "$XDG_RUNTIME_DIR/gammashift-idle"
-bash "$dim" unlocked
+bash "$dim" dim
 test -d "$XDG_RUNTIME_DIR/gammashift-idle"
-export TEST_LOCKED=true
-bash "$dim" locked
+grep -qx 'gamma Brightness /3 1.5' "$TEST_LOG"
+grep -qx 'gamma Gamma \*1.2 1.5' "$TEST_LOG"
+bash "$dim" dim
 test "$(grep -c '^gamma ' "$TEST_LOG")" = 2
 bash "$dim" restore
 test ! -d "$XDG_RUNTIME_DIR/gammashift-idle"
 test "$(grep -c 'undo' "$TEST_LOG")" = 2
+grep -qx 'gamma Brightness undo 0.3' "$TEST_LOG"
+grep -qx 'gamma Gamma undo 0.3' "$TEST_LOG"
 bash "$dim" restore
 test "$(grep -c 'undo' "$TEST_LOG")" = 2
 

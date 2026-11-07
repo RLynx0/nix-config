@@ -14,15 +14,11 @@ if [ "${1:-}" = restore ]; then
     exit 0
 fi
 
-locked="$(noctalia msg status | jq -r '.locked')"
-case "${1:-}:$locked" in
-    locked:true|unlocked:false) ;;
-    *) exit 0 ;;
-esac
+[ "${1:-}" = dim ] || exit 0
 
 # A single marker prevents the locked and unlocked timers dimming twice.
 if mkdir "$state" 2>/dev/null; then
-    "$gammashift" Brightness /3 0.3 &
-    "$gammashift" Gamma '*1.2' 0.3
+    "$gammashift" Brightness /3 1.5 &
+    "$gammashift" Gamma '*1.2' 1.5
     wait
 fi

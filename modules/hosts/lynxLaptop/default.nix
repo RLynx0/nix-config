@@ -70,6 +70,7 @@
 
       inputs.home-manager.nixosModules.home-manager
       inputs.noctalia.nixosModules.default
+      inputs.noctalia-greeter.nixosModules.default
       {
         programs.noctalia = {
           enable = true;

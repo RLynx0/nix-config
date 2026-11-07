@@ -10,6 +10,10 @@
 
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
+    # Includes configurable clock sizes, which the 1.7.0 release does not yet support.
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter/effcb9ffc33f7120cbc6cfc6c6527e9da763a0e9";
+    noctalia-greeter.inputs.nixpkgs.follows = "nixpkgs";
+
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
