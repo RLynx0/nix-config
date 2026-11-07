@@ -1,5 +1,6 @@
 [audio]
 enable_overdrive = true
+enable_sounds = false
 
 [bar.default]
 background_opacity = 0.75
@@ -20,6 +21,11 @@ margin_ends = 6
 start = [ "control-center", "launcher", "tray", "media" ]
 thickness = 32
 widget_spacing = 8
+
+[calendar]
+
+[control_center.calendar]
+show_events_card = false
 
 [dock]
 smart_auto_hide = true
