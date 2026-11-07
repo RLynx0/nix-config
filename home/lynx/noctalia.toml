@@ -1,0 +1,346 @@
+[audio]
+enable_overdrive = true
+
+[bar.default]
+background_opacity = 0.75
+center = [ "workspaces" ]
+end = [
+    "wallpaper",
+    "clipboard",
+    "notifications",
+    "bluetooth",
+    "network",
+    "volume",
+    "brightness",
+    "battery",
+    "clock",
+    "session"
+]
+margin_ends = 6
+start = [ "control-center", "launcher", "tray", "media" ]
+thickness = 32
+widget_spacing = 8
+
+[dock]
+smart_auto_hide = true
+
+[hooks]
+session_unlocked = [ "/home/lynx/.config/hypr/scripts/panic/lock.sh restore" ]
+
+[idle]
+behavior_order = [ "dim-locked", "screen-off-locked", "dim", "lock", "screen-off", "lock-and-suspend" ]
+pre_action_fade_seconds = 0.0
+
+    [idle.behavior.dim]
+    action = "command"
+    command = "/home/lynx/.config/hypr/scripts/idle-dim.sh dim"
+    enabled = true
+    resume_command = "/home/lynx/.config/hypr/scripts/idle-dim.sh restore"
+    timeout = 150.0
+
+    [idle.behavior.dim-locked]
+    action = "command"
+    command = "/home/lynx/.config/hypr/scripts/idle-dim.sh dim"
+    enabled = true
+    locked_timeout = 20.0
+    resume_command = "/home/lynx/.config/hypr/scripts/idle-dim.sh restore"
+    timeout = 0.0
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 160.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 1800.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 180.0
+
+    [idle.behavior.screen-off-locked]
+    action = "screen_off"
+    enabled = true
+    locked_timeout = 30.0
+    timeout = 0.0
+
+[lockscreen]
+allow_empty_password = false
+blur_intensity = 0.29999999999999999
+enabled = true
+fingerprint = true
+grace_period_seconds = 1
+tint_color = "#000000"
+tint_intensity = 0.5
+transition = [ "fade" ]
+transition_duration = 600.0
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@HDMI-A-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lock-date@HDMI-A-1"]
+    box_height = 45.0
+    box_width = 900.0
+    cx = 960.0
+    cy = 100.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget."lock-date@HDMI-A-1".settings]
+        background = false
+        center_text = true
+        color = "primary"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        format = "{:%A, %-d %B %Y}"
+        shadow = true
+
+    [lockscreen_widgets.widget."lock-date@eDP-1"]
+    box_height = 31.333333333333332
+    box_width = 626.66666666666663
+    cx = 564.0
+    cy = 69.629629629629633
+    output = "eDP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget."lock-date@eDP-1".settings]
+        background = false
+        center_text = true
+        color = "primary"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        format = "{:%A, %-d %B %Y}"
+        shadow = true
+
+    [lockscreen_widgets.widget."lock-logo@HDMI-A-1"]
+    box_height = 300.0
+    box_width = 300.0
+    cx = 960.0
+    cy = 540.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "sticker"
+
+        [lockscreen_widgets.widget."lock-logo@HDMI-A-1".settings]
+        background = false
+        image_path = "/home/lynx/.config/noctalia/assets/lynx-lock-logo.png"
+
+    [lockscreen_widgets.widget."lock-logo@eDP-1"]
+    box_height = 208.88888888888889
+    box_width = 208.88888888888889
+    cx = 564.0
+    cy = 376.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sticker"
+
+        [lockscreen_widgets.widget."lock-logo@eDP-1".settings]
+        background = false
+        image_path = "/home/lynx/.config/noctalia/assets/lynx-lock-logo.png"
+
+    [lockscreen_widgets.widget."lock-time@HDMI-A-1"]
+    box_height = 155.0
+    box_width = 600.0
+    cx = 960.0
+    cy = 220.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget."lock-time@HDMI-A-1".settings]
+        background = false
+        center_text = true
+        color = "#ffffff"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        format = "{:%H:%M}"
+        shadow = true
+
+    [lockscreen_widgets.widget."lock-time@eDP-1"]
+    box_height = 107.92592592592592
+    box_width = 417.77777777777777
+    cx = 564.0
+    cy = 153.18518518518519
+    output = "eDP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget."lock-time@eDP-1".settings]
+        background = false
+        center_text = true
+        color = "#ffffff"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        format = "{:%H:%M}"
+        shadow = true
+
+    [lockscreen_widgets.widget."lock-user@HDMI-A-1"]
+    box_height = 25.0
+    box_width = 200.0
+    cx = 960.0
+    cy = 980.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "label"
+
+        [lockscreen_widgets.widget."lock-user@HDMI-A-1".settings]
+        background = false
+        color = "on_surface"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        shadow = true
+        title = "lynx"
+
+    [lockscreen_widgets.widget."lock-user@eDP-1"]
+    box_height = 17.407407407407408
+    box_width = 139.25925925925927
+    cx = 564.0
+    cy = 682.37037037037032
+    output = "eDP-1"
+    rotation = 0.0
+    type = "label"
+
+        [lockscreen_widgets.widget."lock-user@eDP-1".settings]
+        background = false
+        color = "on_surface"
+        font_family = "CaskaydiaCove Nerd Font Mono"
+        shadow = true
+        title = "lynx"
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 889.5
+    output = "HDMI-A-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 564.0
+    cy = 561.5
+    output = "eDP-1"
+    placement_height = 752.0
+    placement_width = 1128.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[nightlight]
+enabled = false
+
+[notification]
+enable_daemon = true
+
+[shell]
+avatar_path = "/home/lynx/Personal/Pictures/renders/LynxLogo.png"
+clipboard_auto_paste = "auto"
+clipboard_enabled = true
+clipboard_history_max_entries = 100
+clipboard_keep_from_closed_apps = true
+polkit_agent = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    auto_paste = "auto"
+
+    [shell.screenshot]
+    copy_to_clipboard = true
+    directory = "/home/lynx/Personal/Pictures/screenshots"
+    freeze_screen = true
+    save_to_file = true
+
+    [[shell.session.actions]]
+    action = "lock"
+
+    [[shell.session.actions]]
+    action = "hibernate"
+    command = "systemctl hibernate"
+    label = "Hibernate"
+
+    [[shell.session.actions]]
+    action = "logout"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+
+    [[shell.session.actions]]
+    action = "suspend"
+
+    [[shell.session.actions]]
+    action = "reboot"
+
+[storage]
+key_source = "secret-service"
+
+[theme]
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "soft"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "/home/lynx/Personal/Pictures/wallpapers"
+
+    [wallpaper.default]
+    path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
+
+    [wallpaper.last]
+    path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
+
+[widget.media]
+hide_when_no_media = false

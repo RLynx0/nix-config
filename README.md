@@ -101,10 +101,20 @@ screenshots, microphone, wallpaper, network, Bluetooth, power, notifications,
 DPMS and runtime config commands. The pinned upstream package supports
 per-call screenshot copy/save flags as well as the configured defaults.
 
-Declarative settings are in `home/lynx/noctalia.nix`, validated at build time.
+Declarative settings are in `home/lynx/noctalia.toml`, validated at build time.
+`home/lynx/noctalia.nix` installs Noctalia and its generated logo asset.
 Noctalia GUI/IPC changes write `~/.local/state/noctalia/settings.toml`, which
-**overrides** the generated config. Carry wanted changes into Nix and move aside
-the state file when returning to the declarative configuration.
+**overrides** the repository config. To capture subsequent GUI changes:
+
+```sh
+noctalia config export merged --credentials omit > home/lynx/noctalia.toml
+```
+
+Review the export for secrets before committing it, then build and activate.
+Once activated, stop Noctalia, move the runtime `settings.toml` to a backup
+outside its config directory, and start Noctalia again. Do not remove runtime
+overrides before capturing them. The logo uses the stable Home Manager path
+`~/.config/noctalia/assets/lynx-lock-logo.png`, rather than an exported store path.
 
 Noctalia themes itself from wallpaper, but its app templates are disabled.
 Existing custom app themes are retained; Stylix still handles other targets.
