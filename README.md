@@ -5,6 +5,89 @@ Bluetooth, UPower, power profiles, fingerprint authentication and GNOME Keyring.
 Home Manager owns Noctalia, the existing Hyprland Lua configuration, desktop
 helpers, Fish, Starship, Kitty, Helix, Zellij, Bat, Cava and Direnv.
 
+## Module layout
+
+This flake uses the [dendritic pattern](https://github.com/mightyiam/dendritic),
+inspired by [vimjoyer/nixconf](https://github.com/vimjoyer/nixconf). `flake.nix`
+contains inputs and the entry point; `import-tree` loads all Nix files under
+`modules/` as **flake-parts modules**, not directly as NixOS/HM modules.
+
+| Path | Responsibility |
+| --- | --- |
+| `modules/flake/` | Module registry, shared `meta`, systems, formatter and dev shell |
+| `modules/hosts/lynx-laptop/` | Host composition and generated hardware configuration |
+| `modules/base/` | Nix settings, locale, bootloader, networking, user and HM integration |
+| `modules/desktop/` | Hyprland/UWSM, Noctalia, greeter, audio, fonts, Stylix, cursor, keyboard, authentication and file manager |
+| `modules/hardware/` | AMD GPU/LACT, Bluetooth, eGPU sleep inhibitor and printing |
+| `modules/shell/`, `terminal/`, `editor/`, `cava.nix` | Home Manager programs and environment |
+| `modules/packages/` | CLI tools, language servers, apps, creative tools and gaming |
+
+Features publish named modules under `flake.modules.nixos.<name>` and
+`flake.modules.homeManager.<name>`. Hosts compose them by name; `base` and
+`desktop` are bundles of features that belong together. Multiple files can
+contribute to the same module (for example Fish, environment and shell tools
+merge into `shell`). Importing a feature enables it; no custom enable switches
+or `specialArgs` plumbing are required.
+
+For example, a feature with both system and user configuration looks like:
+
+```nix
+# modules/example.nix
+{ config, ... }:
+{
+  flake.modules.nixos.example = {
+    home-manager.sharedModules = [ config.flake.modules.homeManager.example ];
+    # NixOS settings here.
+  };
+  flake.modules.homeManager.example = {
+    # Home Manager settings here.
+  };
+}
+```
+
+Add `example` to a host's `imports = with config.flake.modules.nixos; [ ... ];`.
+The NixOS side attaches its HM counterpart to every managed user on that host;
+user-specific settings belong in `home-manager.users.<name>` instead.
+Import `homeManager` and `stylix` when using the existing user features.
+Within this flake, reference modules as `config.flake.modules.nixos.example`;
+from another flake, use `inputs.<name>.modules.nixos.example` or
+`inputs.<name>.modules.homeManager.example`.
+
+Keep raw config files next to their owning feature. `_`-prefixed paths are
+excluded from automatic imports, useful for ordinary Nix expressions that
+are not flake-parts modules. A new host follows `configuration.nix`: expose
+its named NixOS module, compose features and hardware, and feed it to
+`nixpkgs.lib.nixosSystem`. Host and home `stateVersion` values are deliberately
+unchanged; do not bump them as part of a refactor.
+
+Shared username, keyboard layout and cursor settings live in
+`modules/flake/meta.nix`. When an inner module needs its own `config`, alias
+the outer argument or capture shared values before entering it. Hyprland's
+raw Lua still declares `kb_layout = "at"` in
+`modules/desktop/hyprland/config/hyprland/input.lua`; update that too if changing
+the layout. The Bibata package is selected in the cursor and greeter modules.
+
+The nixpkgs registry and `NIX_PATH` already follow the flake input through
+NixOS's defaults. `system.configurationRevision` records the repository
+revision (with a dirty marker for uncommitted changes).
+
+```sh
+nix fmt
+nix develop
+# Inside the dev shell:
+statix check .
+deadnix .
+```
+
+The dev shell supplies nixfmt, nil, statix and deadnix. Lints are available
+on demand, not enforced as flake checks. `nix flake check` includes
+`checks.<linux-system>.hyprland`, testing idle/panic scripts and verifying the
+Lua configuration. Its script is in `modules/desktop/hyprland/tests/`.
+Nix currently warns that the exported `modules` output is unknown; this is
+expected for flake-parts' typed module registry.
+The flake targets `x86_64-linux` and `aarch64-linux`; Darwin outputs are omitted.
+Use `nix flake check --all-systems --no-build` to evaluate both Linux targets.
+
 ## Applying and validating changes
 
 Build before changing any live configuration:
@@ -48,8 +131,8 @@ sudo nixos-rebuild switch --flake .#lynx-laptop
 For rollback, select the previous NixOS generation.
 
 User environment variables, XDG paths and extra PATH entries are configured in
-`home/lynx/environment.nix`. Fish aliases and functions are in
-`home/lynx/programs.nix`.
+`modules/shell/environment.nix`. Fish aliases and functions are in
+`modules/shell/fish.nix`.
 
 ## Desktop controls
 
@@ -101,13 +184,14 @@ screenshots, microphone, wallpaper, network, Bluetooth, power, notifications,
 DPMS and runtime config commands. The pinned upstream package supports
 per-call screenshot copy/save flags as well as the configured defaults.
 
-Declarative settings are in `home/lynx/noctalia.toml`, validated at build time.
-`home/lynx/noctalia.nix` installs Noctalia and its generated logo asset.
+Declarative settings are in `modules/desktop/noctalia/noctalia.toml`, validated
+at build time. `modules/desktop/noctalia/noctalia.nix` installs Noctalia and
+its generated logo asset.
 Noctalia GUI/IPC changes write `~/.local/state/noctalia/settings.toml`, which
 **overrides** the repository config. To capture subsequent GUI changes:
 
 ```sh
-noctalia config export merged --credentials omit > home/lynx/noctalia.toml
+noctalia config export merged --credentials omit > modules/desktop/noctalia/noctalia.toml
 ```
 
 Review the export for secrets before committing it, then build and activate.
@@ -139,7 +223,7 @@ The greeter has a large clock but no custom Lynx logo or background blur.
 After the first boot, run `noctalia msg greeter-sync` once; subsequent appearance
 changes sync automatically. Only the constrained appearance-sync helper is
 authorized without a password for the active local `lynx` session. The greeter
-settings and cursor remain declarative in `nixos/desktop.nix`.
+settings and cursor remain declarative in `modules/desktop/greeter.nix`.
 
 The upstream `cachix` input deliberately does not follow the system's nixpkgs,
 so its binary cache can be used. The configured cache becomes available to
