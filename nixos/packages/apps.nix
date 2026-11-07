@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    baobab
     discord
     kdePackages.gwenview
     kdePackages.kdenlive

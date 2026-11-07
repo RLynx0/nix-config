@@ -20,6 +20,7 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bak";
+      home-manager.sharedModules = [ inputs.noctalia.homeModules.default ];
       home-manager.users.lynx = import (inputs.self + /home/lynx/default.nix);
     };
 
@@ -68,6 +69,20 @@
       })
 
       inputs.home-manager.nixosModules.home-manager
+      inputs.noctalia.nixosModules.default
+      {
+        programs.noctalia = {
+          enable = true;
+          package = null;
+          recommendedServices.enable = true;
+        };
+        nix.settings = {
+          extra-substituters = [ "https://noctalia.cachix.org" ];
+          extra-trusted-public-keys = [
+            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+          ];
+        };
+      }
       self.nixosModules.homeManagerLynx
       inputs.stylix.nixosModules.stylix
       self.nixosModules.stylixLynx

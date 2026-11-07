@@ -8,6 +8,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
+
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -18,7 +20,5 @@
   };
 
   # import modules/ automatically
-  outputs = inputs: inputs.flake-parts.lib.mkFlake
-    {inherit inputs;}
-    (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

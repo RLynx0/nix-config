@@ -1,0 +1,1 @@
+-- Desktop environment variables are exported by UWSM before user services start.

@@ -1,34 +1,21 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    bat
     bc
-    cava
     clinfo
-    cliphist
-    direnv
     ffmpeg
     gh
     git
-    helix
     htop
     jq
     just
-    kitty
     lazygit
-    nix-direnv
-    playerctl
     ripgrep
     rsync
-    starship
     strace
     tree
     typst
     unzip
     wget
-    wl-clip-persist
-    wl-clipboard
-    zellij
-    zoxide
   ];
 }

@@ -1,0 +1,232 @@
+local terminal    = "kitty"
+local fileManager = "thunar"
+local browser     = "librewolf"
+
+local menuToggle    = "noctalia msg panel-toggle launcher"
+local clipboard     = "noctalia msg panel-toggle clipboard"
+local emojiSelector = "noctalia msg panel-open launcher /emo"
+local ws_swap       = "~/.config/hypr/scripts/ws-swap/ws-swap.sh"
+local quick_cmd     = "~/.config/hypr/scripts/quick-cmd/quick-cmd.sh"
+local quick_cava    = quick_cmd .. " -H 65% -W 63% -d c cava"
+
+local toggleBar     = "noctalia msg bar-toggle"
+local lock          = "noctalia msg session lock"
+local laptopBrightnessUp   = "noctalia msg brightness-up eDP-1 5"
+local laptopBrightnessDown = "noctalia msg brightness-down eDP-1 5"
+local gammashift    = "~/.config/scripts/gammashift.sh"
+local nightMode     = gammashift .. " Temperature 4200 & " .. gammashift .. " Brightness 0.5 & " .. gammashift .. " Gamma 1.2"
+local resetGammarelay = gammashift .. " Temperature 6500 & " .. gammashift .. " Brightness 1.0 & " .. gammashift .. " Gamma 1.0"
+local brightnessUp   = gammashift .. " Brightness +0.05 0.01"
+local brightnessDown = gammashift .. " Brightness -0.05 0.01"
+local temperatureUp  = gammashift .. " Temperature +250 0.01"
+local temperatureDown = gammashift .. " Temperature -250 0.01"
+local volumeUp       = "noctalia msg volume-up 5"
+local volumeDown     = "noctalia msg volume-down 5"
+local volumeUpFine   = "noctalia msg volume-up 1"
+local volumeDownFine = "noctalia msg volume-down 1"
+local volumeUpBroad  = "noctalia msg volume-up 25"
+local volumeDownBroad = "noctalia msg volume-down 25"
+local volumeMute     = "noctalia msg volume-mute"
+local hyprZoom       = "~/.config/hypr/scripts/zoom.sh"
+local panicForced    = "~/.config/hypr/scripts/panic/panic.sh -p"
+local panicSwitch    = "~/.config/hypr/scripts/panic/panic.sh"
+local notificationsDismiss = "noctalia msg notification-clear-active"
+local notificationsRestore = "noctalia msg panel-toggle control-center notifications"
+local colorPicker    = 'notify-send "$(hyprpicker -ar)" "Copied Color to Clipboard!"'
+local panicLock      = "~/.config/hypr/scripts/panic/lock.sh"
+local restartServices = "systemctl --user restart noctalia easyeffects wl-gammarelay"
+local hyprCoffee     = "noctalia msg caffeine-toggle"
+local screenshotArea = "noctalia msg screenshot-region"
+local screenshotOutput = "noctalia msg screenshot-fullscreen"
+
+local appPath       = os.getenv("HOME") .. "/.local/share/applications"
+local appLauncher   = "dex"
+local youtube       = appLauncher .. " " .. appPath .. "/home-made/YouTube.desktop"
+local reddit        = appLauncher .. " " .. appPath .. "/home-made/Reddit.desktop"
+local whatsApp      = appLauncher .. " " .. appPath .. "/home-made/WhatsApp.desktop"
+
+local bluetoothControllerMac = "98:B6:E8:7A:7C:31"
+local reconnectController    = "bluetoothctl disconnect " .. bluetoothControllerMac .. " && bluetoothctl connect " .. bluetoothControllerMac
+
+local WS_browser   = "~/.config/scripts/librewolf-workspace.sh"
+local URL_reddit   = "https://www.reddit.com"
+local URL_whatsapp = "https://web.whatsapp.com"
+local URL_instagram = "https://www.instagram.com"
+local URL_bluesky  = "https://bsky.app"
+local URL_telegram = "https://web.telegram.org"
+
+
+-- Modifiers
+local mainMod = "SUPER"
+local moveMod = "SUPER + SHIFT"
+local maltMod = "SUPER + ALT"
+local ctrlMod = "SUPER + CTRL"
+local caltMod = "SUPER + CTRL + ALT"
+local lynxMod = "CTRL + ALT + SHIFT"
+
+
+-- Laptop monitor enable/disable (mirrored from monitors.lua for direct Lua dispatch)
+local function enableLaptopMonitor()
+    hl.monitor({ output = "desc:BOE 0x095F", mode = "preferred", position = "0x0", scale = "auto", disabled = false })
+end
+local function disableLaptopMonitor()
+    hl.monitor({ output = "desc:BOE 0x095F", disabled = true })
+end
+
+
+-- System Controls
+hl.bind(mainMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd(laptopBrightnessUp),   { locked = true, repeating = true })
+hl.bind(mainMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd(laptopBrightnessDown), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",                hl.dsp.exec_cmd(laptopBrightnessUp),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",              hl.dsp.exec_cmd(laptopBrightnessDown), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume",               hl.dsp.exec_cmd(volumeUp),             { repeating = true })
+hl.bind("XF86AudioLowerVolume",               hl.dsp.exec_cmd(volumeDown),           { repeating = true })
+hl.bind("CTRL + XF86AudioRaiseVolume",        hl.dsp.exec_cmd(volumeUpBroad),        { repeating = true })
+hl.bind("CTRL + XF86AudioLowerVolume",        hl.dsp.exec_cmd(volumeDownBroad),      { repeating = true })
+hl.bind("SHIFT + XF86AudioRaiseVolume",       hl.dsp.exec_cmd(volumeUpFine),         { repeating = true })
+hl.bind("SHIFT + XF86AudioLowerVolume",       hl.dsp.exec_cmd(volumeDownFine),       { repeating = true })
+hl.bind("XF86AudioMute",                      hl.dsp.exec_cmd(volumeMute))
+hl.bind("XF86AudioPlay",                      hl.dsp.exec_cmd("noctalia msg media toggle"))
+hl.bind("XF86AudioPrev",                      hl.dsp.exec_cmd("noctalia msg media previous"))
+hl.bind("XF86AudioNext",                      hl.dsp.exec_cmd("noctalia msg media next"))
+hl.bind(ctrlMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd(brightnessUp),   { repeating = true })
+hl.bind(ctrlMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd(brightnessDown), { repeating = true })
+hl.bind(caltMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd(temperatureUp),  { repeating = true })
+hl.bind(caltMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd(temperatureDown),{ repeating = true })
+hl.bind(ctrlMod .. " + N", hl.dsp.exec_cmd(nightMode),          { locked = true })
+hl.bind(ctrlMod .. " + M", hl.dsp.exec_cmd(resetGammarelay),    { locked = true })
+hl.bind(ctrlMod .. " + S", hl.dsp.exec_cmd(screenshotArea))
+hl.bind(ctrlMod .. " + W", hl.dsp.exec_cmd(screenshotOutput))
+hl.bind(ctrlMod .. " + C", hl.dsp.exec_cmd(clipboard))
+hl.bind(ctrlMod .. " + E", hl.dsp.exec_cmd(emojiSelector))
+hl.bind(ctrlMod .. " + L", hl.dsp.exec_cmd(lock))
+hl.bind(caltMod .. " + L", hl.dsp.exec_cmd(panicLock))
+hl.bind(ctrlMod .. " + Q", hl.dsp.exec_cmd(colorPicker))
+hl.bind(ctrlMod .. " + F", hl.dsp.exec_cmd("systemctl --user restart easyeffects"))
+hl.bind(ctrlMod .. " + B", hl.dsp.exec_cmd(toggleBar))
+hl.bind(ctrlMod .. " + Z", hl.dsp.exec_cmd(hyprZoom))
+hl.bind(ctrlMod .. " + H", hl.dsp.exec_cmd("noctalia msg wallpaper-random"))
+hl.bind(ctrlMod .. " + P", function() disableLaptopMonitor() end)
+hl.bind(caltMod .. " + P", function() enableLaptopMonitor()  end)
+hl.bind(ctrlMod .. " + R", hl.dsp.exec_cmd(restartServices))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(hyprCoffee))
+hl.bind(caltMod .. " + B", hl.dsp.exec_cmd(reconnectController))
+
+-- Hyprland Essential Controls
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("noctalia msg panel-toggle session"))
+hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + V", hl.dsp.window.float())
+hl.bind(mainMod .. " + Y", hl.dsp.window.close())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(maltMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized"  }))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(panicSwitch))
+hl.bind(maltMod .. " + D", hl.dsp.exec_cmd(panicForced))
+
+-- Essential app keybinds
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menuToggle))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+
+-- Convenient keybinds
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(notificationsDismiss))
+hl.bind(maltMod .. " + N", hl.dsp.exec_cmd(notificationsRestore))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(quick_cmd .. " -r"))
+hl.bind(moveMod .. " + X", hl.dsp.exec_cmd(quick_cmd .. " -fW -,70%,- -d r,c,l"))
+hl.bind(ctrlMod .. " + X", hl.dsp.exec_cmd(quick_cmd .. " -fH 50% -d dr,ur,ul,dl"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(quick_cava))
+
+-- Compatibility bindings
+hl.bind("CTRL + ALT + T", hl.dsp.exec_cmd(terminal))
+hl.bind("ALT + F4",       hl.dsp.window.close())
+
+-- Commune
+hl.bind(mainMod .. " + U", function()
+    hl.dispatch(hl.dsp.exec_cmd(WS_browser .. " " .. URL_reddit .. " " .. URL_whatsapp .. " " .. URL_instagram .. " " .. URL_bluesky .. " " .. URL_telegram .. " & disown"))
+    hl.dispatch(hl.dsp.exec_cmd("discord"))
+    hl.dispatch(hl.dsp.exec_cmd("thunderbird"))
+end)
+
+-- Custom app keybinds
+hl.bind(lynxMod .. " + A", hl.dsp.exec_cmd("uhk-agent"))
+hl.bind(lynxMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(lynxMod .. " + D", hl.dsp.exec_cmd("discord"))
+hl.bind(lynxMod .. " + E", hl.dsp.exec_cmd("thunderbird"))
+hl.bind(lynxMod .. " + F", hl.dsp.exec_cmd("easyeffects"))
+hl.bind(lynxMod .. " + G", hl.dsp.exec_cmd("godot"))
+hl.bind(lynxMod .. " + M", hl.dsp.exec_cmd("spotify"))
+hl.bind(lynxMod .. " + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind(lynxMod .. " + S", hl.dsp.exec_cmd("steam"))
+hl.bind(lynxMod .. " + T", hl.dsp.exec_cmd("torbrowser-launcher"))
+hl.bind(lynxMod .. " + V", hl.dsp.exec_cmd("virt-manager"))
+hl.bind(lynxMod .. " + X", hl.dsp.exec_cmd("keepassxc"))
+hl.bind(lynxMod .. " + R", hl.dsp.exec_cmd(reddit))
+hl.bind(lynxMod .. " + W", hl.dsp.exec_cmd(whatsApp))
+hl.bind(lynxMod .. " + Y", hl.dsp.exec_cmd(youtube))
+
+-- Move focus with mainMod + hjkl
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "d" }))
+
+-- Move focus with mainMod + arrow keys
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "r" }))
+hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "l" }))
+hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "u" }))
+hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "d" }))
+
+-- Move active window with moveMod + hjkl
+hl.bind(moveMod .. " + L", hl.dsp.window.move({ direction = "r" }))
+hl.bind(moveMod .. " + H", hl.dsp.window.move({ direction = "l" }))
+hl.bind(moveMod .. " + K", hl.dsp.window.move({ direction = "u" }))
+hl.bind(moveMod .. " + J", hl.dsp.window.move({ direction = "d" }))
+hl.bind(moveMod .. " + C", hl.dsp.window.center())
+
+-- Move active window with moveMod + arrow keys
+hl.bind(moveMod .. " + right", hl.dsp.window.move({ direction = "r" }))
+hl.bind(moveMod .. " + left",  hl.dsp.window.move({ direction = "l" }))
+hl.bind(moveMod .. " + up",    hl.dsp.window.move({ direction = "u" }))
+hl.bind(moveMod .. " + down",  hl.dsp.window.move({ direction = "d" }))
+
+-- Resize active window with maltMod + hjkl
+hl.bind(maltMod .. " + L", hl.dsp.window.resize({ x =  24, y =   0, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + H", hl.dsp.window.resize({ x = -24, y =   0, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + K", hl.dsp.window.resize({ x =   0, y = -24, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + J", hl.dsp.window.resize({ x =   0, y =  24, relative = true }), { repeating = true })
+
+-- Resize active window with maltMod + arrow keys
+hl.bind(maltMod .. " + right", hl.dsp.window.resize({ x =  24, y =   0, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + left",  hl.dsp.window.resize({ x = -24, y =   0, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + up",    hl.dsp.window.resize({ x =   0, y = -24, relative = true }), { repeating = true })
+hl.bind(maltMod .. " + down",  hl.dsp.window.resize({ x =   0, y =  24, relative = true }), { repeating = true })
+
+-- Move/resize windows with mainMod + LMB/RMB and dragging
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Switch workspaces with mainMod + [0-9]
+-- Move active window to a workspace with moveMod + [0-9]
+-- Move active window silently with maltMod + [0-9]
+-- Swap contents of a workspace with ctrlMod + [0-9]
+for i = 1, 10 do
+    local key = tostring(i % 10)
+    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+    hl.bind(moveMod .. " + " .. key, hl.dsp.window.move({ workspace = i }))
+    hl.bind(maltMod .. " + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
+    hl.bind(ctrlMod .. " + " .. key, hl.dsp.exec_cmd(ws_swap .. " " .. i))
+end
+
+-- Special Workspaces
+hl.bind(mainMod .. " + A", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(moveMod .. " + A", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(maltMod .. " + A", hl.dsp.window.move({ workspace = "special:magic", follow = false }))
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("shadowRealm"))
+hl.bind(moveMod .. " + S", hl.dsp.window.move({ workspace = "special:shadowRealm" }))
+hl.bind(maltMod .. " + S", hl.dsp.window.move({ workspace = "special:shadowRealm", follow = false }))
+
+-- Scroll through existing workspaces with mainMod + scroll / ,.
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + PERIOD",     hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + COMMA",      hl.dsp.focus({ workspace = "e-1" }))
