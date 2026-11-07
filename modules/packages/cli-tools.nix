@@ -14,6 +14,7 @@
       ripgrep
       rsync
       strace
+      termdown
       tree
       typst
       unzip
