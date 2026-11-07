@@ -67,6 +67,11 @@ pre_action_fade_seconds = 0.0
     locked_timeout = 30.0
     timeout = 0.0
 
+[location]
+address = "Siebenhaus, Austria"
+latitude = 47.93095
+longitude = 16.22748
+
 [lockscreen]
 allow_empty_password = false
 blur_intensity = 0.29999999999999999
