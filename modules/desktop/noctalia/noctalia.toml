@@ -23,9 +23,14 @@ thickness = 32
 widget_spacing = 8
 
 [calendar]
+enabled = true
+
+    [calendar.account.primary]
+    name = "Primary Google"
+    type = "google"
 
 [control_center.calendar]
-show_events_card = false
+show_events_card = true
 
 [dock]
 smart_auto_hide = true
@@ -75,7 +80,7 @@ pre_action_fade_seconds = 0.0
 
 [location]
 address = "Siebenhaus, Austria"
-latitude = 47.930952
+latitude = 47.930950000000003
 longitude = 16.22748
 
 [lockscreen]
@@ -420,31 +425,62 @@ polkit_agent = true
     [shell.launcher]
     auto_paste = "auto"
 
+    [shell.panel]
+    open_near_click_control_center = true
+    open_near_click_session = true
+
     [shell.screenshot]
     copy_to_clipboard = true
     directory = "/home/lynx/Personal/Pictures/screenshots"
     freeze_screen = true
     save_to_file = true
 
-    [[shell.session.actions]]
-    action = "lock"
+    [shell.session]
+    grid = true
 
-    [[shell.session.actions]]
-    action = "hibernate"
-    command = "systemctl hibernate"
-    label = "Hibernate"
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "l"
+        variant = "default"
 
-    [[shell.session.actions]]
-    action = "logout"
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "o"
+        variant = "default"
 
-    [[shell.session.actions]]
-    action = "shutdown"
+        [[shell.session.actions]]
+        action = "suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "s"
+        variant = "default"
 
-    [[shell.session.actions]]
-    action = "suspend"
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "r"
+        variant = "default"
 
-    [[shell.session.actions]]
-    action = "reboot"
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "d"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "hibernate"
+        command = "systemctl hibernate"
+        countdown_seconds = 0.0
+        enabled = true
+        label = "Hibernate"
+        shortcut = "h"
+        variant = "default"
 
 [storage]
 key_source = "secret-service"
