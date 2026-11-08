@@ -18,7 +18,7 @@ end = [
     "session"
 ]
 margin_ends = 6
-start = [ "control-center", "launcher", "tray", "media" ]
+start = [ "control-center", "launcher", "tray", "media", "audio_visualizer_2" ]
 thickness = 32
 widget_spacing = 8
 
@@ -80,7 +80,7 @@ pre_action_fade_seconds = 0.0
 
 [location]
 address = "Siebenhaus, Austria"
-latitude = 47.93095
+latitude = 47.930950000000003
 longitude = 16.22748
 
 [lockscreen]
@@ -568,7 +568,7 @@ wallpaper_scheme = "soft"
 
 [wallpaper]
 directory = "/home/lynx/Personal/Pictures/wallpapers"
-edge_smoothness = 0.1
+edge_smoothness = 0.099999997764825821
 transition = [ "disc" ]
 
     [wallpaper.default]
@@ -582,6 +582,10 @@ transition = [ "disc" ]
 
     [wallpaper.monitors.eDP-1]
     path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
+
+[widget.audio_visualizer_2]
+mirrored = false
+type = "audio_visualizer"
 
 [widget.media]
 hide_when_no_media = false
