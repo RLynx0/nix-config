@@ -5,6 +5,7 @@ local browser     = "librewolf"
 local menuToggle     = "noctalia msg panel-toggle launcher"
 local clipboard      = "noctalia msg panel-toggle clipboard"
 local windowSelector = "noctalia msg panel-toggle launcher /win"
+local wallpaperSelector = "noctalia msg panel-toggle launcher /wall"
 local emojiSelector  = "noctalia msg panel-toggle launcher /emo"
 local ws_swap        = "~/.config/hypr/scripts/ws-swap/ws-swap.sh"
 local quick_cmd      = "~/.config/hypr/scripts/quick-cmd/quick-cmd.sh"
@@ -97,7 +98,8 @@ hl.bind(caltMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd(temperatureDown),{
 hl.bind(ctrlMod .. " + N", hl.dsp.exec_cmd(nightMode),          { locked = true })
 hl.bind(ctrlMod .. " + M", hl.dsp.exec_cmd(resetGammarelay),    { locked = true })
 hl.bind(ctrlMod .. " + S", hl.dsp.exec_cmd(screenshotArea))
-hl.bind(ctrlMod .. " + W", hl.dsp.exec_cmd(screenshotOutput))
+hl.bind(caltMod .. " + S", hl.dsp.exec_cmd(screenshotOutput))
+hl.bind(ctrlMod .. " + W", hl.dsp.exec_cmd(wallpaperSelector))
 hl.bind(ctrlMod .. " + C", hl.dsp.exec_cmd(clipboard))
 hl.bind(ctrlMod .. " + E", hl.dsp.exec_cmd(emojiSelector))
 hl.bind(ctrlMod .. " + L", hl.dsp.exec_cmd(lock))
