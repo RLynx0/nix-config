@@ -11,6 +11,7 @@
       obsidian
       spotify
       thunderbird
+      uhk-agent
       vlc
     ];
   };
