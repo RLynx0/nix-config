@@ -18,7 +18,7 @@ end = [
     "session"
 ]
 margin_ends = 6
-start = [ "control-center", "launcher", "tray", "media", "audio_visualizer_2" ]
+start = [ "control-center", "launcher", "screenshot", "tray", "media", "audio_visualizer_2" ]
 thickness = 32
 widget_spacing = 8
 
@@ -481,6 +481,15 @@ enabled = false
 
 [notification]
 enable_daemon = true
+
+[plugin_settings."noctalia/mpvpaper"]
+video_directory = "/home/lynx/Personal/Videos"
+
+[plugin_settings."noctalia/screen_recorder"]
+directory = "/home/lynx/Personal/Videos/Screenrecordings"
+
+[plugins]
+enabled = [ "noctalia/mpvpaper" ]
 
 [shell]
 avatar_path = "/home/lynx/Personal/Pictures/renders/LynxLogo.png"

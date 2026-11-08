@@ -33,10 +33,14 @@
     in
     {
       imports = [ inputs.noctalia.homeModules.default ];
-      programs.noctalia = {
-        enable = true;
-        systemd.enable = true;
-        settings = ./noctalia.toml;
+      programs = {
+        mpvpaper.enable = true;
+        mpv.enable = true;
+        noctalia = {
+          enable = true;
+          systemd.enable = true;
+          settings = ./noctalia.toml;
+        };
       };
 
       xdg.configFile."noctalia/assets/lynx-lock-logo.png".source = lockLogo;
