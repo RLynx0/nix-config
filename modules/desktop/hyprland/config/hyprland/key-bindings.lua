@@ -2,12 +2,13 @@ local terminal    = "kitty"
 local fileManager = "thunar"
 local browser     = "librewolf"
 
-local menuToggle    = "noctalia msg panel-toggle launcher"
-local clipboard     = "noctalia msg panel-toggle clipboard"
-local emojiSelector = "noctalia msg panel-open launcher /emo"
-local ws_swap       = "~/.config/hypr/scripts/ws-swap/ws-swap.sh"
-local quick_cmd     = "~/.config/hypr/scripts/quick-cmd/quick-cmd.sh"
-local quick_cava    = quick_cmd .. " -H 65% -W 63% -d c cava"
+local menuToggle     = "noctalia msg panel-toggle launcher"
+local clipboard      = "noctalia msg panel-toggle clipboard"
+local windowSelector = "noctalia msg panel-toggle launcher /win"
+local emojiSelector  = "noctalia msg panel-toggle launcher /emo"
+local ws_swap        = "~/.config/hypr/scripts/ws-swap/ws-swap.sh"
+local quick_cmd      = "~/.config/hypr/scripts/quick-cmd/quick-cmd.sh"
+local quick_cava     = quick_cmd .. " -H 65% -W 63% -d c cava"
 
 local toggleBar     = "noctalia msg bar-toggle"
 local lock          = "noctalia msg session lock"
@@ -123,6 +124,7 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(panicSwitch))
 hl.bind(maltMod .. " + D", hl.dsp.exec_cmd(panicForced))
 
 -- Essential app keybinds
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(windowSelector))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menuToggle))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal))
