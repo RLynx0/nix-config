@@ -80,7 +80,7 @@ pre_action_fade_seconds = 0.0
 
 [location]
 address = "Siebenhaus, Austria"
-latitude = 47.930950000000003
+latitude = 47.93095
 longitude = 16.22748
 
 [lockscreen]
@@ -568,6 +568,8 @@ wallpaper_scheme = "soft"
 
 [wallpaper]
 directory = "/home/lynx/Personal/Pictures/wallpapers"
+edge_smoothness = 0.1
+transition = [ "disc" ]
 
     [wallpaper.default]
     path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
