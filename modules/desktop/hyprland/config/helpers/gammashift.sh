@@ -11,6 +11,19 @@ TARGET_FILE="$STATE_HOME/$property.target"
 UNDO_FILE="$STATE_HOME/$property.previous"
 LOCK_FILE="$STATE_HOME/$property.lock"
 
+case "$property" in
+  Temperature|Brightness|Gamma) ;;
+  *)
+    echo "Please use either 'Temperature', 'Brightness' or 'Gamma' as a property" >&2
+    exit 1
+    ;;
+esac
+
+if [ -z "$input_val" ]; then
+  echo "Please specify a value to move shift the property to." >&2
+  exit 1
+fi
+
 [ -d "$STATE_HOME" ] || mkdir -p "$STATE_HOME"
 [ -e "$TARGET_FILE" ] && X="$(cat "$TARGET_FILE")"
 A="$(busctl --user -- get-property rs.wl-gammarelay / rs.wl.gammarelay "$property")"
