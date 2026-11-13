@@ -26,8 +26,21 @@ widget_spacing = 8
 enabled = true
 
     [calendar.account.primary]
+    calendars = [
+        "8iivudn0omdkeh4bf0v7ki4ktk@group.calendar.google.com",
+        "de.austrian#holiday@group.v.calendar.google.com",
+        "lucas.ressler.96@gmail.com"
+    ]
     name = "Primary Google"
     type = "google"
+
+    [calendar.account.signin_google]
+    calendars = [ "luc.signin96@gmail.com" ]
+    name = "SignIn Google"
+    type = "google"
+
+    [calendar.reminders]
+    default_lead_minutes = 60
 
 [control_center.calendar]
 show_events_card = true
