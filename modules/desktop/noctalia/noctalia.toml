@@ -52,37 +52,33 @@ smart_auto_hide = true
 session_unlocked = [ "/home/lynx/.config/hypr/scripts/panic/lock.sh restore" ]
 
 [idle]
-behavior_order = [ "dim", "screen-off-locked", "lock", "screen-off", "lock-and-suspend" ]
+behavior_order = [ "dim", "lock", "screen-off", "lock-and-suspend" ]
 pre_action_fade_seconds = 0.0
 
     [idle.behavior.dim]
     action = "command"
-    command = "gammashift shift brightness '*0.3' -t 1.5 --id idle-dim; gammashift shift gamma '*1.2' -t 1.5 --id idle-dim"
-    enabled = true
+    command = "gammashift shift -i idle-dim -t 1.5 brightness '*0.3'; gammashift shift -i idle-dim -t 1.5 gamma '*1.2'"
+    resume_command = "gammashift shift -i idle-dim -t 0.3 brightness undo; gammashift shift -i idle-dim -t 0.3 gamma undo"
     locked_timeout = 20.0
-    resume_command = "gammashift shift brightness undo -t 0.3 --id idle-dim; gammashift shift gamma undo -t 0.3 --id idle-dim"
     timeout = 150.0
+    enabled = true
 
     [idle.behavior.lock]
     action = "lock"
     enabled = true
     timeout = 160.0
 
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    locked_timeout = 30.0
+    timeout = 180.0
+    enabled = true
+
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
     enabled = true
     timeout = 1800.0
 
-    [idle.behavior.screen-off]
-    action = "screen_off"
-    enabled = true
-    timeout = 180.0
-
-    [idle.behavior.screen-off-locked]
-    action = "screen_off"
-    enabled = true
-    locked_timeout = 30.0
-    timeout = 0.0
 
 [location]
 address = "Siebenhaus, Austria"
