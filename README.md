@@ -113,7 +113,7 @@ Noctalia Greeter defaults to **Hyprland (uwsm-managed)** and password login.
 Its PAM stack unlocks GNOME Keyring; fingerprint remains enabled for the lock
 screen, not for the greeter.
 
-Check `systemctl --user status noctalia easyeffects wl-gammarelay`,
+Check `systemctl --user status noctalia easyeffects wl-gammarelay gammashift`,
 then test launcher, session panel, clipboard,
 audio, brightness, screenshots and lock/unlock with a TTY available. Reboot and
 check clipboard history persistence. GNOME Keyring's default collection must
@@ -149,7 +149,7 @@ User environment variables, XDG paths and extra PATH entries are configured in
 | MOD+CTRL+B | Toggle bars |
 | MOD+CTRL+H | Random wallpaper |
 | MOD+N / MOD+ALT+N | Dismiss notifications / open notification history |
-| MOD+CTRL+R | Restart Noctalia, EasyEffects and gamma relay |
+| MOD+CTRL+R | Restart Noctalia, EasyEffects, gamma relay and gammashift |
 
 Volume, brightness and media keys use `noctalia msg`, not brightnessctl,
 wpctl or playerctl. Noctalia's overdrive ceiling is **150%**, rather than the
@@ -159,7 +159,7 @@ are removed.
 
 Noctalia replaces wofi, wlogout, cliphist, wl-clip-persist, rofimoji, grimblast,
 hypridle, hyprlock, pavucontrol and Blueman. Keep `wl-clipboard`, `hyprpicker`,
-`dex`, `libnotify`, `calc` and `wl-gammarelay-rs` for remaining functionality.
+`dex`, `libnotify`, `gammashift` and `wl-gammarelay-rs` for remaining functionality.
 Panic's per-player pause/resume uses MPRIS over `busctl`, since Noctalia's media
 IPC controls the selected player rather than every player.
 
@@ -203,12 +203,34 @@ overrides before capturing them. The logo uses the stable Home Manager path
 Noctalia themes itself from wallpaper, but its app templates are disabled.
 Existing custom app themes are retained; Stylix still handles other targets.
 Noctalia nightlight is disabled because `wl-gammarelay-rs` owns gamma control.
-Idle dims brightness to one third and raises gamma over **1.5 seconds** at
+Idle dims brightness to 30% of its current value and raises gamma over **1.5 seconds** at
 150 seconds, locks at 160 seconds, turns screens off at 180 seconds, and
 locks/suspends at 1800 seconds. An already-locked session dims after 20 seconds
 and turns screens off after 30 seconds. Activity restores gamma/brightness
 over 0.3 seconds. Noctalia's default pre-action black overlay is disabled;
-locked-only timers use `locked_timeout`, not guards inside scripts.
+the single dim behavior uses `locked_timeout = 20` to avoid dimming twice.
+
+### Gamma transitions
+
+The [Rust gammashift service](https://github.com/RLynx0/gammashift) replaces the
+old shell transition script. Its user service starts after `wl-gammarelay`
+has acquired its D-Bus name and stops with the Wayland session. It still needs
+`wl-gammarelay-rs` to apply the gamma changes.
+
+```sh
+gammashift shift temperature 4200
+gammashift shift brightness +0.05 -t 0.1
+gammashift shift gamma default
+journalctl --user -u gammashift
+```
+
+The brightness/temperature and night-mode/reset keybinds use this CLI.
+Noctalia's TOML runs dim/undo commands directly with `--id idle-dim`, keeping
+their undo history separate from manual adjustments. There is no idle wrapper
+script. Undo history is in memory: restarting gammashift while dimmed loses
+the saved values; use the gamma reset keybind to restore defaults in that case.
+
+### Lock screen and greeter
 
 The native lock screen uses a darkened blurred wallpaper, a large clock/date,
 circular Lynx logo, username and compact password row. Layouts are declared

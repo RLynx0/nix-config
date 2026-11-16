@@ -46,7 +46,6 @@
     };
 
     home.packages = with pkgs; [
-      calc
       dex
       hyprpicker
       libnotify

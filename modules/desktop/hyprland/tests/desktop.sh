@@ -9,7 +9,7 @@ export XDG_STATE_HOME="$scratch/state"
 export XDG_RUNTIME_DIR="$scratch/runtime"
 export TEST_LOG="$scratch/commands"
 export TEST_LOCK_FAIL=0
-mkdir -p "$scratch/bin" "$XDG_CONFIG_HOME/scripts" "$XDG_RUNTIME_DIR"
+mkdir -p "$scratch/bin" "$XDG_RUNTIME_DIR"
 export PATH="$scratch/bin:$PATH"
 
 cat > "$scratch/bin/noctalia" <<'EOF'
@@ -19,27 +19,8 @@ if [ "$*" = 'msg session lock' ] && [ "$TEST_LOCK_FAIL" = 1 ]; then
     exit 1
 fi
 EOF
-cat > "$XDG_CONFIG_HOME/scripts/gammashift.sh" <<'EOF'
-#!/usr/bin/env bash
-printf 'gamma %s\n' "$*" >> "$TEST_LOG"
-EOF
-chmod +x "$scratch/bin/noctalia" "$XDG_CONFIG_HOME/scripts/gammashift.sh"
-sed -i "1c#!$(command -v bash)" "$scratch/bin/noctalia" "$XDG_CONFIG_HOME/scripts/gammashift.sh"
-
-dim="$feature/config/scripts/idle-dim.sh"
-bash "$dim" dim
-test -d "$XDG_RUNTIME_DIR/gammashift-idle"
-grep -qx 'gamma Brightness /3 1.5' "$TEST_LOG"
-grep -qx 'gamma Gamma \*1.2 1.5' "$TEST_LOG"
-bash "$dim" dim
-test "$(grep -c '^gamma ' "$TEST_LOG")" = 2
-bash "$dim" restore
-test ! -d "$XDG_RUNTIME_DIR/gammashift-idle"
-test "$(grep -c 'undo' "$TEST_LOG")" = 2
-grep -qx 'gamma Brightness undo 0.3' "$TEST_LOG"
-grep -qx 'gamma Gamma undo 0.3' "$TEST_LOG"
-bash "$dim" restore
-test "$(grep -c 'undo' "$TEST_LOG")" = 2
+chmod +x "$scratch/bin/noctalia"
+sed -i "1c#!$(command -v bash)" "$scratch/bin/noctalia"
 
 mkdir -p "$scratch/panic"
 cp "$feature/config/scripts/panic/lock.sh" "$scratch/panic/"

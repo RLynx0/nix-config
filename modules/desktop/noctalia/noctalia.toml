@@ -52,23 +52,16 @@ smart_auto_hide = true
 session_unlocked = [ "/home/lynx/.config/hypr/scripts/panic/lock.sh restore" ]
 
 [idle]
-behavior_order = [ "dim-locked", "screen-off-locked", "dim", "lock", "screen-off", "lock-and-suspend" ]
+behavior_order = [ "dim", "screen-off-locked", "lock", "screen-off", "lock-and-suspend" ]
 pre_action_fade_seconds = 0.0
 
     [idle.behavior.dim]
     action = "command"
-    command = "/home/lynx/.config/hypr/scripts/idle-dim.sh dim"
-    enabled = true
-    resume_command = "/home/lynx/.config/hypr/scripts/idle-dim.sh restore"
-    timeout = 150.0
-
-    [idle.behavior.dim-locked]
-    action = "command"
-    command = "/home/lynx/.config/hypr/scripts/idle-dim.sh dim"
+    command = "gammashift shift brightness '*0.3' -t 1.5 --id idle-dim; gammashift shift gamma '*1.2' -t 1.5 --id idle-dim"
     enabled = true
     locked_timeout = 20.0
-    resume_command = "/home/lynx/.config/hypr/scripts/idle-dim.sh restore"
-    timeout = 0.0
+    resume_command = "gammashift shift brightness undo -t 0.3 --id idle-dim; gammashift shift gamma undo -t 0.3 --id idle-dim"
+    timeout = 150.0
 
     [idle.behavior.lock]
     action = "lock"
