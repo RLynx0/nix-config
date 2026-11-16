@@ -27,15 +27,6 @@ function options {
     echo "4.0"
 }
 
-function notify {
-    id_file="/tmp/hyprzoom-previous-notification-id"
-    if [ -r "$id_file" ]; then
-      notify-send "$monitor scaled to $new_scale" -r "$(cat "$id_file")" -p > "$id_file"
-    else
-      notify-send "$monitor scaled to $new_scale" -p > "$id_file"
-    fi
-}
-
 eval "$(hyprctl monitors | awk '
 /^Monitor/ {m=$2}
 /^\s*description/ {$1=""; d=$0}
@@ -50,12 +41,6 @@ eval "$(hyprctl monitors | awk '
 }')"
 description="${description# }"
 
-
-new_scale="$(\
-    options \
-    | noctalia dmenu -p "Set scale for $monitor, currently at $scale"\
-)"
-[ "$new_scale" != "" ] \
-&& hyprctl eval 'hl.monitor({ output = "desc:'"$description"'", mode = "preferred", position = "'"$offset"'", scale = "'"$new_scale"'" })' \
-&& sleep 0.2 \
-&& notify
+new_scale="$(options | noctalia dmenu -p "Set scale for $monitor, currently at $scale")"
+[ "$new_scale" != "" ] && hyprctl eval 'hl.monitor({ output = "desc:'"$description"'", mode = "preferred", position = "'"$offset"'", scale = "'"$new_scale"'" })' \
+&& sleep 0.2 && noctalia msg osd-show zoom "$monitor scaled to $new_scale"
