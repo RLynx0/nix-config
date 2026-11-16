@@ -1,10 +1,22 @@
 { config, ... }:
 {
-  flake.modules.nixos.hyprland = { pkgs, ... }: {
+  flake.modules.nixos.hyprland = { pkgs, lib, ... }: {
     home-manager.sharedModules = [ config.flake.modules.homeManager.hyprland ];
     services.displayManager.defaultSession = "hyprland-uwsm";
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    # D-Bus activation during logout can otherwise start a portal without a compositor,
+    # leaving a stale frontend that advertises no ScreenCast sources in the next session.
+    systemd.user.services =
+      lib.genAttrs
+        [
+          "xdg-desktop-portal"
+          "xdg-desktop-portal-hyprland"
+        ]
+        (_: {
+          after = [ "graphical-session.target" ];
+          requisite = [ "graphical-session.target" ];
+        });
     programs.hyprland = {
       enable = true;
       withUWSM = true;
