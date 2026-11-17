@@ -21,5 +21,11 @@
       };
     };
 
+    stylix.icons = {
+      enable = true;
+      package = pkgs.dracula-icon-theme;
+      light = "Dracula";
+      dark = "Dracula";
+    };
   };
 }
