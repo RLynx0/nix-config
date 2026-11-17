@@ -504,35 +504,6 @@ widget_order = [
         show_unlock_hint = false
         show_weather = true
 
-    [lockscreen_widgets.widget."lockscreen-login-box@FALLBACK"]
-    box_height = 196.0
-    box_width = 810.0
-    cx = 960.0
-    cy = 898.0
-    output = "FALLBACK"
-    placement_height = 1080.0
-    placement_width = 1920.0
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@FALLBACK".settings]
-        background_color = "surface_container"
-        background_opacity = 0.88
-        background_radius = 12.0
-        center_password_text = false
-        input_opacity = 1.0
-        input_radius = 6.0
-        layout = "regular"
-        show_caps_lock = true
-        show_keyboard_layout = true
-        show_login_button = true
-        show_media = true
-        show_media_controls = true
-        show_password_reveal = true
-        show_session_buttons = true
-        show_unlock_hint = true
-        show_weather = true
-
     [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
     box_height = 70.0
     box_width = 512.0
@@ -638,41 +609,6 @@ widget_order = [
         background = false
         image_path = "/home/lynx/Personal/Pictures/renders/LynxLogoCircle.png"
         opacity = 1.0
-
-    [lockscreen_widgets.widget.lockscreen-widget-0000000000000007]
-    box_height = 96.0
-    box_width = 208.0
-    cx = 564.0
-    cy = 136.0
-    output = "eDP-1"
-    placement_height = 752.0
-    placement_width = 1128.0
-    rotation = 0.0
-    type = "clock"
-
-        [lockscreen_widgets.widget.lockscreen-widget-0000000000000007.settings]
-        background = false
-        center_text = true
-        clock_style = "digital"
-        shadow = true
-
-    [lockscreen_widgets.widget.lockscreen-widget-0000000000000009]
-    box_height = 112.0
-    box_width = 256.0
-    cx = 564.0
-    cy = 112.0
-    output = "eDP-1"
-    placement_height = 752.0
-    placement_width = 1128.0
-    rotation = 0.0
-    type = "clock"
-
-        [lockscreen_widgets.widget.lockscreen-widget-0000000000000009.settings]
-        background = false
-        center_text = true
-        clock_style = "digital"
-        format = "{:%Y-%m-%d}"
-        shadow = true
 
 [nightlight]
 enabled = false
@@ -782,6 +718,9 @@ transition = [ "disc" ]
     path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
 
     [wallpaper.last]
+    path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
+
+    [wallpaper.monitors.DP-5]
     path = "/home/lynx/Personal/Pictures/wallpapers/UT-Umbrella-Shortened.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
