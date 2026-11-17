@@ -105,7 +105,7 @@ widget_order = [
 
     "lockscreen-login-box@eDP-1",
     "lockscreen-login-box@HDMI-A-1",
-    "lockscreen-login-box@FALLBACK",
+    "lockscreen-login-box@DP-5",
 
     "lockscreen-lynx_logo@eDP-1",
     "lockscreen-lynx_logo@HDMI-A-1",
@@ -371,7 +371,7 @@ widget_order = [
         show_session_buttons = true
         show_unlock_hint = false
         show_weather = true
-        
+
     [lockscreen_widgets.widget."lockscreen-login-box@DP-5"]
     box_height = 70.0
     box_width = 512.0
