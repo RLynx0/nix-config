@@ -1,7 +1,9 @@
 { config, ... }:
 {
-  flake.modules.nixos.audio = {
+  flake.modules.nixos.audio = nixosArgs: {
     home-manager.sharedModules = [ config.flake.modules.homeManager.audio ];
+    # Provides `pw-jack` for running JACK clients on PipeWire
+    environment.systemPackages = [ nixosArgs.config.services.pipewire.package.jack ];
     security.rtkit.enable = true;
     services.pulseaudio.enable = false;
     services.pipewire = {
@@ -9,7 +11,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
     };
   };
   flake.modules.homeManager.audio.services.easyeffects.enable = true;
