@@ -617,7 +617,7 @@ enabled = false
 enable_daemon = true
 
 [plugin_settings."noctalia/mpvpaper"]
-video_directory = "/home/lynx/Personal/Videos"
+video_directory = "/home/lynx/Personal/Videos/VideoWallpapers"
 
 [plugin_settings."noctalia/screen_recorder"]
 directory = "/home/lynx/Personal/Videos/Screenrecordings"

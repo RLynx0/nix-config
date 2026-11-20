@@ -7,6 +7,7 @@ local clipboard         = "noctalia msg panel-toggle clipboard"
 local windowSelector    = "noctalia msg panel-toggle launcher /win"
 local wallpaperSelector = "noctalia msg panel-toggle launcher /wall"
 local emojiSelector     = "noctalia msg panel-toggle launcher /emo"
+local noctaliaPanels    = "noctalia msg panel-toggle launcher /pan"
 local ws_swap           = "~/.config/hypr/scripts/ws-swap/ws-swap.sh"
 local quick_cmd         = "~/.config/hypr/scripts/quick-cmd/quick-cmd.sh"
 local quick_cava        = quick_cmd .. " -H 65% -W 63% -d c cava"
@@ -127,6 +128,7 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(panicSwitch))
 hl.bind(maltMod .. " + D", hl.dsp.exec_cmd(panicForced))
 
 -- Essential app keybinds
+hl.bind(mainMod .. " + MINUS", hl.dsp.exec_cmd(noctaliaPanels))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(windowSelector))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menuToggle))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
