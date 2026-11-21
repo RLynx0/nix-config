@@ -634,7 +634,7 @@ clipboard_keep_from_closed_apps = true
 polkit_agent = true
 
     [shell.greeter_sync]
-    auto_sync = true
+    auto_sync = false
 
     [shell.launcher]
     app_grid = true
