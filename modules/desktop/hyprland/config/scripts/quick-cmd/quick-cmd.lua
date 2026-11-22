@@ -79,7 +79,8 @@ local function setup_window(config, default, last)
 
   local pos = resolve_dock_pos(resolved_dock.value, space, dims)
   hl.dispatch(hl.dsp.window.move({ workspace = 'special:' .. config.workspace }))
-  if not hl.get_active_window().floating then hl.dispatch(hl.dsp.window.float()) end
+  hl.dispatch(hl.dsp.window.float({ action = 'on' }))
+  hl.dispatch(hl.dsp.window.pseudo({ action = 'off' }))
   hl.dispatch(hl.dsp.window.resize({ x = dims.x, y = dims.y, relative = false }))
   hl.dispatch(hl.dsp.window.move({ x = pos.x, y = pos.y, relative = false }))
 
