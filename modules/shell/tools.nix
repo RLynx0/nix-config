@@ -22,6 +22,10 @@
           file = "Dark Lynx.tmTheme";
         };
       };
+      lsd = {
+        enable = true;
+        enableFishIntegration = true;
+      };
     };
     xdg.configFile."starship.toml".source = ./starship.toml;
     stylix.targets = {
