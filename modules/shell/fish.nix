@@ -35,16 +35,6 @@
           starship_transient_prompt_func = "starship module character";
         };
       };
-      xdg.configFile = {
-        "fish/conf.d" = {
-          source = ./fish/conf.d;
-          recursive = true;
-        };
-        "fish/completions" = {
-          source = ./fish/completions;
-          recursive = true;
-        };
-      };
       stylix.targets.fish.enable = false;
     };
 }
