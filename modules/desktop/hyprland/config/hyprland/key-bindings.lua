@@ -14,7 +14,7 @@ local quick_cava        = quick_cmd .. " -H 65% -W 63% -d c cava"
 
 local noctaliaOsd          = "noctalia msg osd-show"
 local toggleBar            = "noctalia msg bar-toggle"
-local lock                 = "noctalia msg session lock"
+local lock                 = "noctalia msg caffeine-disable; noctalia msg session lock"
 local laptopBrightnessUp   = "noctalia msg brightness-up eDP-1 5"
 local laptopBrightnessDown = "noctalia msg brightness-down eDP-1 5"
 local gammashift           = "gammashift shift"
