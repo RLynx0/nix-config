@@ -11,6 +11,7 @@
       jq
       just
       lazygit
+      midi-pianoroll-tui
       ripgrep
       rsync
       strace

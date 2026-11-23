@@ -14,7 +14,8 @@ contains inputs and the entry point; `import-tree` loads all Nix files under
 
 | Path | Responsibility |
 | --- | --- |
-| `modules/flake/` | Module registry, shared `meta`, systems, formatter and dev shell |
+| `modules/flake/` | Module registry, local package overlay, shared `meta`, systems, formatter and dev shell |
+| `pkgs/` | Local package definitions |
 | `modules/hosts/lynx-laptop/` | Host composition and generated hardware configuration |
 | `modules/base/` | Nix settings, locale, bootloader, networking, user and HM integration |
 | `modules/desktop/` | Hyprland/UWSM, Noctalia, greeter, audio, fonts, Stylix, cursor, keyboard, authentication and file manager |
@@ -87,6 +88,12 @@ Nix currently warns that the exported `modules` output is unknown; this is
 expected for flake-parts' typed module registry.
 The flake targets `x86_64-linux` and `aarch64-linux`; Darwin outputs are omitted.
 Use `nix flake check --all-systems --no-build` to evaluate both Linux targets.
+
+Local packages live in `pkgs/<name>/package.nix` and are available as
+`nix run .#<name>` and `pkgs.<name>` in the system and Home Manager. Add new
+package files to Git so flakes can see them. Package functions can request
+other local packages by name. `pkgs/` is outside `modules/` so `import-tree`
+does not interpret package definitions as flake-parts modules.
 
 ## Applying and validating changes
 
@@ -216,6 +223,11 @@ The [Rust gammashift service](https://github.com/RLynx0/gammashift) replaces the
 old shell transition script. Its user service starts after `wl-gammarelay`
 has acquired its D-Bus name and stops with the Wayland session. It still needs
 `wl-gammarelay-rs` to apply the gamma changes.
+
+Its package is defined in `pkgs/gammashift/package.nix`. To update it, change
+the revision and version, set the source hash to `lib.fakeHash` and build to
+obtain the correct hash; then set `cargoHash` to `lib.fakeHash` and rebuild to
+obtain the new dependency hash.
 
 ```sh
 gammashift shift temperature 4200

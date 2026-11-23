@@ -1,9 +1,8 @@
-{ inputs, ... }:
 {
   flake.modules.homeManager.hyprland =
     { config, pkgs, ... }:
     let
-      gammashift = inputs.gammashift.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      inherit (pkgs) gammashift;
     in
     {
       home.packages = [

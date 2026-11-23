@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   flake.modules.nixos.nix = {
     nix.settings.experimental-features = [
@@ -8,5 +9,6 @@
     environment.defaultPackages = [ ];
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.overlays = [ config.flake.overlays.default ];
   };
 }
