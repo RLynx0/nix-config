@@ -13,6 +13,7 @@
         '';
       })
       audacity
+      bitwig-studio6
       blender
       godot
       inkscape
