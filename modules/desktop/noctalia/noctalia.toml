@@ -655,6 +655,7 @@ polkit_agent = true
 
         [[shell.session.actions]]
         action = "lock"
+        command = "noctalia msg caffeine-disable; noctalia msg session lock"
         countdown_seconds = 0.0
         enabled = true
         shortcut = "l"
